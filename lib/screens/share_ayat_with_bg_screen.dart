@@ -4,21 +4,42 @@ import 'dart:io';
 import 'dart:typed_data';
 import 'dart:ui' as ui;
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
+import 'package:get/get.dart';
+import 'package:infinite_carousel/infinite_carousel.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:share_plus/share_plus.dart';
 
 class ShareAyatWithBgScreen extends StatefulWidget {
-  const ShareAyatWithBgScreen({super.key, required this.text});
+  ShareAyatWithBgScreen({
+    super.key,
+    required this.text,
+    required this.surahNumberOrTitle,
+    required this.ayatNumber,
+  });
   final String text;
+  String? surahNumberOrTitle;
+  int? ayatNumber;
 
   @override
   State<ShareAyatWithBgScreen> createState() => _ShareAyatWithBgScreenState();
 }
 
 class _ShareAyatWithBgScreenState extends State<ShareAyatWithBgScreen> {
+  List<String> assetImagePaths = [
+    'assets/images/frame_1.png',
+    'assets/images/frame_2.png',
+    'assets/images/bg_peach.png',
+  ];
+
+  int selectedIndex = 0;
+
   Uint8List? imageFile;
 
   //Create an instance of ScreenshotController
@@ -68,7 +89,8 @@ class _ShareAyatWithBgScreenState extends State<ShareAyatWithBgScreen> {
             child: Stack(
               children: [
                 Image.asset(
-                  'assets/images/bg_1.jpg', // Replace 'assets/your_image.png' with your image path
+                  //  'assets/images/bg_1.jpg', // Replace 'assets/your_image.png' with your image path
+                  assetImagePaths[selectedIndex],
                   width: MediaQuery.of(context).size.width,
                   height: 300,
                   fit: BoxFit.cover,
@@ -79,16 +101,107 @@ class _ShareAyatWithBgScreenState extends State<ShareAyatWithBgScreen> {
                   alignment: Alignment.center,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      widget.text,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(color: Colors.white),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Surah No ${widget.surahNumberOrTitle}' +
+                              ' : ' +
+                              'Ayat No ${widget.ayatNumber}',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        SizedBox(
+                          height: 7,
+                        ),
+                        Text(
+                          widget.text,
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                              color: Colors.white, fontSize: 15),
+                        ),
+                      ],
                     ),
                   ),
                 ),
               ],
             ),
           ),
+          // Container(
+          //   width: Get.width,
+          //   height: 150,
+          //   child: InfiniteCarousel.builder(
+          //     itemCount: 1,
+          //     itemExtent: 150,
+          //     center: false,
+          //     anchor: 0.0,
+
+          //     velocityFactor: 0.2,
+          //     onIndexChanged: (index) {},
+          //     //  controller: controller,
+          //     axisDirection: Axis.horizontal,
+          //     //  loop: true,
+          //     itemBuilder: (context, itemIndex, realIndex) {
+          //       return Container(
+          //           //   width: 200,
+          //           //  height: 200,
+          //           child: Card(
+          //         color: Colors.red,
+          //       ));
+          //     },
+          //   ),
+          // )
+          Container(
+            width: Get.width,
+            height: 130,
+            child: FlutterCarousel.builder(
+                options: CarouselOptions(
+                  scrollBehavior: MaterialScrollBehavior(),
+                  // height: 400.0,
+
+                  aspectRatio: 16 / 9,
+                  viewportFraction: 0.4,
+                  initialPage: 0,
+                  //    enableInfiniteScroll: true,
+                  reverse: false,
+                  autoPlay: false,
+                  //  autoPlayInterval: const Duration(seconds: 2),
+                  //  autoPlayAnimationDuration: const Duration(milliseconds: 800),
+                  //  autoPlayCurve: Curves.fastOutSlowIn,
+                  enlargeCenterPage: false,
+                  //  controller: CarouselController(),
+                  //  onPageChanged: callbackFunction,
+                  //  pageSnapping: true,
+                  scrollDirection: Axis.horizontal,
+                  pauseAutoPlayOnTouch: true,
+                  pauseAutoPlayOnManualNavigate: true,
+                  // pauseAutoPlayInFiniteScroll: false,
+                  enlargeStrategy: CenterPageEnlargeStrategy.scale,
+                  disableCenter: true,
+                  showIndicator: false,
+                  onPageChanged: (index, reason) {
+                    selectedIndex = index;
+                    setState(() {});
+                  },
+                  // floatingIndicator = true,
+                  //   slideIndicator: CircularSlideIndicator(),
+                ),
+                itemCount: assetImagePaths.length,
+                itemBuilder:
+                    (BuildContext context, int itemIndex, int pageViewIndex) {
+                  return Container(
+                    width: 200,
+                    height: 130,
+                    child: Card(
+                      //    color: Colors.red,
+                      child: Image.asset(
+                        assetImagePaths[itemIndex],
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  );
+                }),
+          )
         ],
       ),
     );

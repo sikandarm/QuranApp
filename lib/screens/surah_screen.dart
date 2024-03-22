@@ -11,6 +11,7 @@ import 'package:syncfusion_flutter_sliders/sliders.dart';
 import '../controller/commonController.dart';
 import '../models/surah_model.dart';
 import '../utils/audio_player_dialog.dart';
+import '../utils/shareAyatDialog.dart';
 
 class SurahScreen extends StatefulWidget {
   const SurahScreen({
@@ -55,7 +56,6 @@ class _SurahScreenState extends State<SurahScreen> {
     controller.surah.value = await fetchSurah(
       surahNumber: widget.surahNumber,
       language: widget.language,
-
       edition: widget.title,
     );
     for (var noUse in controller.surah.value.data!.ayahs!) {
@@ -63,8 +63,7 @@ class _SurahScreenState extends State<SurahScreen> {
       textColorChangeList.add(false); // Initialize all text color to false
     }
     isLoading(false);
-print('ok: '+
-    controller.surah.value.data!.ayahs![0].number.toString());
+    print('ok: ' + controller.surah.value.data!.ayahs![0].number.toString());
   }
 
   @override
@@ -152,7 +151,6 @@ print('ok: '+
                                           )
                                         : InkWell(
                                             onTap: () async {
-
                                               isWholeSurahAudioIsPlaying =
                                                   false;
                                               if (audioPlayer.playing) {
@@ -172,13 +170,18 @@ print('ok: '+
                                               textColorChangeList[index] =
                                                   true; // Change text color state
                                               setState(() {});
-                                              print('widget.totalPreviousVerses + index + 1: '+(widget.totalPreviousVerses + index + 1).toString());
-                                              print('======================================');
-                                            //  controller.surah.value.data!.ayahs![0].number;
+                                              print('widget.totalPreviousVerses + index + 1: ' +
+                                                  (widget.totalPreviousVerses +
+                                                          index +
+                                                          1)
+                                                      .toString());
+                                              print(
+                                                  '======================================');
+                                              //  controller.surah.value.data!.ayahs![0].number;
                                               await audioPlayer.setUrl(
                                                   'https://cdn.islamic.network/quran/audio/128/ar.alafasy/${(controller.surah.value.data!.ayahs![index].number)}.mp3');
-                                          //    await audioPlayer.setUrl(
-                                            //      'https://cdn.islamic.network/quran/audio/128/ar.alafasy/${(widget.totalPreviousVerses + index + 1)}.mp3');
+                                              //    await audioPlayer.setUrl(
+                                              //      'https://cdn.islamic.network/quran/audio/128/ar.alafasy/${(widget.totalPreviousVerses + index + 1)}.mp3');
 
                                               await audioPlayer.play();
                                             },
@@ -198,7 +201,17 @@ print('ok: '+
                                         size: 17,
                                       ),
                                       onTap: () async {
-                                        await Share.share(ayah.text.toString());
+                                        //          itemCount: controller.surah.value.data!.ayahs!.length,
+                                        //    itemBuilder: (context, index) {
+                                        final ayah = controller
+                                            .surah.value.data!.ayahs![index];
+                                        //////
+                                        await showMyAyatShareDialog(
+                                          context,
+                                          ayah.text!,
+                                          widget.surahNumber.toString(),
+                                          ayah.numberInSurah!,
+                                        );
                                       },
                                     ),
                                     Expanded(
