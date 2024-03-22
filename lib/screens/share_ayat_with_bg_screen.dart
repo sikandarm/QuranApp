@@ -35,7 +35,20 @@ class _ShareAyatWithBgScreenState extends State<ShareAyatWithBgScreen> {
   List<String> assetImagePaths = [
     'assets/images/frame_1.png',
     'assets/images/frame_2.png',
-    'assets/images/bg_peach.png',
+    'assets/images/frame_3.png',
+    'assets/images/frame_4.png',
+    'assets/images/frame_5.png',
+    'assets/images/frame_6.png',
+    'assets/images/frame_7.png',
+    'assets/images/frame_8.png',
+    'assets/images/frame_9.png',
+    'assets/images/frame_10.png',
+    'assets/images/frame_11.png',
+    'assets/images/frame_12.png',
+    'assets/images/frame_13.png',
+    'assets/images/frame_14.png',
+    'assets/images/frame_15.png',
+    'assets/images/frame_16.png',
   ];
 
   int selectedIndex = 0;
@@ -92,12 +105,12 @@ class _ShareAyatWithBgScreenState extends State<ShareAyatWithBgScreen> {
                   //  'assets/images/bg_1.jpg', // Replace 'assets/your_image.png' with your image path
                   assetImagePaths[selectedIndex],
                   width: MediaQuery.of(context).size.width,
-                  height: 300,
+                  height: 370,
                   fit: BoxFit.cover,
                 ),
                 Container(
                   width: MediaQuery.of(context).size.width,
-                  height: 300,
+                  height: 370,
                   alignment: Alignment.center,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -106,12 +119,10 @@ class _ShareAyatWithBgScreenState extends State<ShareAyatWithBgScreen> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          'Surah No ${widget.surahNumberOrTitle}' +
-                              ' : ' +
-                              'Ayat No ${widget.ayatNumber}',
-                          style: TextStyle(color: Colors.white),
+                          'Surah No ${widget.surahNumberOrTitle} : Ayat No ${widget.ayatNumber}',
+                          style: const TextStyle(color: Colors.white),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 7,
                         ),
                         Text(
@@ -156,7 +167,7 @@ class _ShareAyatWithBgScreenState extends State<ShareAyatWithBgScreen> {
             height: 130,
             child: FlutterCarousel.builder(
                 options: CarouselOptions(
-                  scrollBehavior: MaterialScrollBehavior(),
+                  scrollBehavior: const MaterialScrollBehavior(),
                   // height: 400.0,
 
                   aspectRatio: 16 / 9,

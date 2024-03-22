@@ -89,7 +89,7 @@ class _SurahScreenState extends State<SurahScreen> {
                 ),
               );
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.play_arrow,
             ),
           ),
@@ -193,9 +193,9 @@ class _SurahScreenState extends State<SurahScreen> {
                                                       .amber, // Change text color
                                             ),
                                           ),
-                                    SizedBox(width: 4),
+                                    const SizedBox(width: 4),
                                     InkWell(
-                                      child: Icon(
+                                      child: const Icon(
                                         Icons.share,
                                         color: Colors.white,
                                         size: 17,
