@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hadith/classes.dart';
-import 'package:hadith/hadith.dart';
 
 import '../models/getAllHadithBooks.dart';
 import 'hadith_screen.dart';
@@ -14,7 +12,6 @@ class HadithSectionScreen extends StatefulWidget {
 }
 
 class _HadithSectionScreenState extends State<HadithSectionScreen> {
-  List<Collection>? collections;
   HadithBooksDataModel? hadithBooksDataModel;
 
   List<String> hadithBooks = [
@@ -52,7 +49,6 @@ class _HadithSectionScreenState extends State<HadithSectionScreen> {
   }
 
   Future<void> getHadithData() async {
-    collections = getCollections();
     hadithBooksDataModel = await fetchAllHadithBooks();
     setState(() {});
   }

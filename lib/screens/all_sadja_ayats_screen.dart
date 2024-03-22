@@ -815,6 +815,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ramazan_app_new_v1/screens/share_ayat_with_bg_screen.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:arabic_font/arabic_font.dart'; // Import arabic_font package
 import '../controller/commonController.dart';
@@ -879,10 +880,15 @@ class _AllSadjaAyatsScreenState extends State<AllSadjaAyatsScreen> {
                             children: [
                               InkWell(
                                 onTap: () async {
-                                  await Share.share(
-                                    controller.allSadjaAyatsInQuran.value.data!
-                                        .ayahs![i].text!,
-                                  );
+                                  //    await Share.share(
+                                  //      controller.allSadjaAyatsInQuran.value.data!
+                                  //         .ayahs![i].text!,
+                                  //   );
+
+                                  Get.to(ShareAyatWithBgScreen(
+                                    text: controller.allSadjaAyatsInQuran.value
+                                        .data!.ayahs![i].text!,
+                                  ));
                                 },
                                 child: Text(
                                   controller.allSadjaAyatsInQuran.value.data!

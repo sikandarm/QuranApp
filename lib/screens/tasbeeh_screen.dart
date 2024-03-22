@@ -2,10 +2,10 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_animated_icons/icons8.dart';
+
 import 'package:flutter_islamic_icons/flutter_islamic_icons.dart';
 import 'package:get/get.dart';
-import 'package:lottie/lottie.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 class TasbeehScreen extends StatefulWidget {

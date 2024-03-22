@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_islamic_icons/flutter_islamic_icons.dart';
 import 'package:get/get.dart';
-import 'package:light_bottom_navigation_bar/light_bottom_navigation_bar.dart';
+
 import 'package:ramazan_app_new_v1/screens/dua_and_azkar_section.dart';
 import 'package:ramazan_app_new_v1/screens/tasbeeh_counter_section.dart';
 

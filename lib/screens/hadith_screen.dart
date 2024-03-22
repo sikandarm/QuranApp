@@ -86,8 +86,6 @@
 // }
 
 import 'package:flutter/material.dart';
-import 'package:hadith/classes.dart';
-import 'package:hadith/hadith.dart';
 
 //////////////////////////////////////
 

@@ -34,43 +34,64 @@ dependencies:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.6
-  get: ^4.6.6
-  http: ^1.2.1
-  # animated_bottom_navigation_bar: ^1.3.3
-  ionicons: ^0.2.2
-  hadith: ^1.0.0
-  flutter_islamic_icons: ^1.0.2
-  # floating_bottom_navigation_bar: ^1.5.2
-  light_bottom_navigation_bar: ^0.0.2
-  # fl_location: ^3.0.0
-  shared_preferences: ^2.2.2
-  syncfusion_flutter_sliders: ^24.2.9
-  chips_choice: ^3.0.1
-  flutter_animated_icons: ^1.0.1
-  lottie: ^1.4.3
-  # animated_bottom_navigation_bar: ^1.3.3
-  # animated_bottom_navigation: ^0.0.5
-  intl: ^0.19.0
-  hijri: ^3.0.0
-  rename_app: ^1.3.2
-  flutter_launcher_icons: ^0.13.1
-  share_plus: ^7.2.2
-  arabic_font: ^0.0.9
-  easy_image_viewer: ^1.4.1
-  just_audio: ^0.9.36
-  # location: ^5.0.0-dev.8
+  # cupertino_icons: ^1.0.6
+  # get: ^4.6.6
+  # http: ^1.2.1
+  # # animated_bottom_navigation_bar: ^1.3.3
+  # ionicons: ^0.2.2
+  # # hadith: ^1.0.0
+  # flutter_islamic_icons: ^1.0.2
+  # # floating_bottom_navigation_bar: ^1.5.2
+  # # light_bottom_navigation_bar: ^0.0.2
+  # # fl_location: ^3.0.0
+  # shared_preferences: ^2.2.2
+  # syncfusion_flutter_sliders: ^24.2.9
+  # chips_choice: ^3.0.1
+  # # flutter_animated_icons: ^1.0.1
+  # # lottie: ^1.4.3
+  # # animated_bottom_navigation_bar: ^1.3.3
+  # # animated_bottom_navigation: ^0.0.5
+  # intl: ^0.19.0
+  # hijri: ^3.0.0
+  # # rename_app: ^1.3.2
+  # # flutter_launcher_icons: ^0.13.1
   # share_plus: ^7.2.2
-  # animated_icon: ^0.0.9
-  # huawei_location: ^6.12.0+301
-  # geolocator: ^11.0.0
-  # location: ^5.0.3
-  # location: ^5.0.3
-  # location: ^5.0.3
-  # location: ^5.0.3
-  # adhan_dart: ^1.0.8
-  # prayers_times: ^0.0.6
-  # location: ^5.0.3
+  # arabic_font: ^0.0.9
+  # easy_image_viewer: ^1.4.1
+  # just_audio: ^0.9.36
+  # # location: ^5.0.0-dev.8
+  # # share_plus: ^7.2.2
+  # # animated_icon: ^0.0.9
+  # # huawei_location: ^6.12.0+301
+  # # geolocator: ^11.0.0
+  # # location: ^5.0.3
+  # # location: ^5.0.3
+  # # location: ^5.0.3
+  # # location: ^5.0.3
+  # # adhan_dart: ^1.0.8
+  # # prayers_times: ^0.0.6
+  # # location: ^5.0.3
+  cupertino_icons: any
+  get: any
+  http: any
+  # animated_bottom_navigation_bar: any
+  ionicons: any
+  flutter_islamic_icons: any
+  # floating_bottom_navigation_bar: any
+  # light_bottom_navigation_bar: any
+  # fl_location: any
+  shared_preferences: any
+  syncfusion_flutter_sliders: any
+  chips_choice: any
+  intl: any
+  hijri: any
+  share_plus: any
+  arabic_font: any
+  easy_image_viewer: any
+  just_audio: any
+  screenshot: ^2.3.0
+  path: ^1.9.0
+  path_provider: ^2.1.2
 
 dev_dependencies:
   flutter_test:

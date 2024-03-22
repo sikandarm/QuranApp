@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 final ThemeData myTheme = ThemeData(
   // Define your primary and accent colors, typography, etc. here
-  // scaffoldBackgroundColor: Color.fromARGB(34, 158, 158, 158),
+  scaffoldBackgroundColor: Color.fromARGB(34, 158, 158, 158),
   cardTheme: CardTheme(
-    //   color: Color.fromARGB(45, 158, 158, 158),
+    color: Color.fromARGB(45, 158, 158, 158),
     // color: Color.fromARGB(
     //   0xff,
     //   0x9b, // red value
