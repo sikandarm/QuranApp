@@ -41,7 +41,7 @@ class _ShareAyatWithBgScreenState extends State<ShareAyatWithBgScreen> {
               final image = await screenshotController.capture();
 
               ///////////////////////////////
-              shareScreenshot(image!.buffer.asUint8List());
+              await shareScreenshot(image!.buffer.asUint8List());
 
 ////////////////////////////////////////////
               // if (image != null) {
@@ -82,7 +82,7 @@ class _ShareAyatWithBgScreenState extends State<ShareAyatWithBgScreen> {
                     child: Text(
                       widget.text,
                       textAlign: TextAlign.center,
-                      style: TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.white),
                     ),
                   ),
                 ),
