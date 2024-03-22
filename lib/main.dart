@@ -6,6 +6,7 @@ import 'screens/main_screen.dart';
 import 'screens/quran_section_screen.dart';
 import 'theme/themeData.dart';
 
+
 void main() {
   runApp(const MyApp());
 }
