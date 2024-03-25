@@ -28,7 +28,7 @@ class QuranSectionScreen extends StatelessWidget {
       fontWeight: FontWeight.w600,
     );
 
-    const cardColor = Color.fromARGB(180, 255, 223, 204);
+    const cardColor = Color.fromARGB(146, 255, 223, 204);
     const cardBorderColor = Color(0xffffae2138);
 
     double cardElevation = 0.5;
