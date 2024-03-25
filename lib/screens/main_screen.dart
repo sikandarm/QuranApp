@@ -17,12 +17,12 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  RxInt currentIndex = 0.obs;
+  RxInt currentIndex = 2.obs;
 
   List<Widget> screens = [
-    QuranSectionScreen(),
     const HomeScreen(),
     const HadithSectionScreen(),
+    QuranSectionScreen(),
     DartAndAzkarSection(),
     TasbeehCounterSection(),
   ];
@@ -166,16 +166,20 @@ class _MainScreenState extends State<MainScreen> {
 
       bottomNavigationBar: Container(
         height: 92,
-        margin: const EdgeInsets.only(left: 2, right: 2, bottom: 0),
-        decoration: BoxDecoration(
-            border: Border.all(
-          width: 1.5,
-          //   color: Color.fromARGB(114, 155, 95, 77), // Add outline color here
-        )),
+        //  margin: const EdgeInsets.only(left: 2, right: 2, bottom: 0),
+        // decoration: BoxDecoration(
+        //       border: Border.all(
+        //    width: 1.5,
+        //   color: Color.fromARGB(114, 155, 95, 77), // Add outline color here
+        //         )),
         child: BottomNavigationBar(
           // backgroundColor: Color.fromARGB(165, 155, 95, 77),
-          backgroundColor: Color(0xffff9b5f4d),
+          //  backgroundColor: const Color(0xffff9b5f4d),
           //  selectedItemColor: const Color(0xffd99658),
+          backgroundColor: const Color(0xffffdfcc),
+          selectedItemColor: Color(0xffffae2138),
+          unselectedItemColor: Color(0xffffae2138),
+
           unselectedFontSize: 0,
 
           //  selectedFontSize: 0,
@@ -191,11 +195,11 @@ class _MainScreenState extends State<MainScreen> {
             currentIndex.value = value;
             setState(() {});
           },
-          items: [
+          items: const [
             BottomNavigationBarItem(
               icon: Icon(
                 FlutterIslamicIcons.solidTakbir,
-                color: Colors.white,
+                // color: Colors.white,
                 size: 33,
               ),
               label: 'Prayers',
@@ -203,7 +207,7 @@ class _MainScreenState extends State<MainScreen> {
             BottomNavigationBarItem(
               icon: Icon(
                 FlutterIslamicIcons.solidQuran,
-                color: Colors.white,
+                //  color: Colors.white,
                 size: 33,
               ),
               label: 'Hadith',
@@ -211,7 +215,7 @@ class _MainScreenState extends State<MainScreen> {
             BottomNavigationBarItem(
               icon: Icon(
                 FlutterIslamicIcons.solidQuran2,
-                color: Colors.white,
+                //    color: Colors.white,
                 size: 33,
               ),
               label: 'Quran',
@@ -219,7 +223,7 @@ class _MainScreenState extends State<MainScreen> {
             BottomNavigationBarItem(
               icon: Icon(
                 FlutterIslamicIcons.solidPrayer,
-                color: Colors.white,
+                //  color: Colors.white,
                 size: 33,
               ),
               label: 'Duas',
@@ -232,7 +236,7 @@ class _MainScreenState extends State<MainScreen> {
               // ),
               icon: Icon(
                 FlutterIslamicIcons.tasbih3,
-                color: Colors.white,
+                //     color: Colors.white,
                 size: 33,
               ),
               label: 'Tasbeeh',
