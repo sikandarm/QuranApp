@@ -118,8 +118,19 @@ class QuranSectionScreen extends StatelessWidget {
                           context: context,
                           builder: (context) {
                             return AlertDialog(
+                              elevation: 0,
+                              backgroundColor:
+                                  Color.fromARGB(255, 216, 200, 189),
                               actions: [
                                 ElevatedButton(
+                                    style: ButtonStyle(
+                                        foregroundColor:
+                                            MaterialStatePropertyAll(
+                                                Colors.white),
+                                        backgroundColor:
+                                            MaterialStatePropertyAll(
+                                          Color(0xffffae2138),
+                                        )),
                                     onPressed: () async {
                                       if (!formKey.currentState!.validate()) {
                                         return;
@@ -139,7 +150,9 @@ class QuranSectionScreen extends StatelessWidget {
                                   children: [
                                     const Text(
                                       'Search in Quran',
-                                      style: TextStyle(fontSize: 18),
+                                      style: TextStyle(
+                                          fontSize: 18,
+                                          color: Color(0xffffae2138)),
                                     ),
                                     const SizedBox(height: 4),
                                     TextFormField(
@@ -151,7 +164,16 @@ class QuranSectionScreen extends StatelessWidget {
                                         return null;
                                       },
                                       decoration: const InputDecoration(
-                                          hintText: 'Type a word'),
+                                        hintText: 'Type a word',
+                                        hintStyle: TextStyle(
+                                          color: Color(0xffffae2138),
+                                        ),
+                                        enabledBorder: UnderlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: Color(0xffffae2138),
+                                          ), // Change bottom border color here
+                                        ),
+                                      ),
                                     ),
                                   ],
                                 ),

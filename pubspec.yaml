@@ -96,6 +96,7 @@ dependencies:
   flutter_carousel_widget: any
   # flutter_material_color_picker: any
   flex_color_picker: any
+  flutter_slidable: ^3.1.0
   # flutter_colorpicker: any
 
 dev_dependencies:

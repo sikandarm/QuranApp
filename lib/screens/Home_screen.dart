@@ -352,7 +352,14 @@ class _HomeScreenState extends State<HomeScreen> {
       barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Enter Your Information'),
+          elevation: 0,
+          backgroundColor: Color.fromARGB(255, 216, 200, 189),
+          title: const Text(
+            'Enter Your Information',
+            style: TextStyle(
+              color: Color(0xffffae2138),
+            ),
+          ),
           content: SingleChildScrollView(
             child: Form(
               key: formKey,
@@ -366,7 +373,17 @@ class _HomeScreenState extends State<HomeScreen> {
                       return null;
                     },
                     controller: textController1,
-                    decoration: const InputDecoration(labelText: 'Country'),
+                    decoration: const InputDecoration(
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Color(0xffffae2138),
+                        ), // Change bottom border color here
+                      ),
+                      labelText: 'Country',
+                      labelStyle: TextStyle(
+                        color: Color(0xffffae2138),
+                      ),
+                    ),
                   ),
                   TextFormField(
                     validator: (value) {
@@ -376,7 +393,17 @@ class _HomeScreenState extends State<HomeScreen> {
                       return null;
                     },
                     controller: textController2,
-                    decoration: const InputDecoration(labelText: 'City'),
+                    decoration: const InputDecoration(
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Color(0xffffae2138),
+                        ), // Change bottom border color here
+                      ),
+                      labelText: 'City',
+                      labelStyle: TextStyle(
+                        color: Color(0xffffae2138),
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -384,6 +411,11 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           actions: <Widget>[
             ElevatedButton(
+              style: ButtonStyle(
+                  foregroundColor: MaterialStatePropertyAll(Colors.white),
+                  backgroundColor: MaterialStatePropertyAll(
+                    Color(0xffffae2138),
+                  )),
               child: const Text('Submit'),
               onPressed: () {
                 if (!formKey.currentState!.validate()) {

@@ -10,18 +10,22 @@ Future<String?> showMyAyatShareDialog(BuildContext context, String ayat,
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
+        elevation: 0,
+        backgroundColor: Color.fromARGB(255, 216, 200, 189),
         title: const Text(
           'Share Options',
           style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-          ),
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              color: Color(0xffffae2138)),
         ),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Divider(),
+            Divider(
+              color: Color(0xffffae2138),
+            ),
             InkWell(
               onTap: () async {
                 // Handle option 1 tap
@@ -34,7 +38,8 @@ Future<String?> showMyAyatShareDialog(BuildContext context, String ayat,
                   'Only Text',
                   style: TextStyle(
                     fontSize: 17,
-                    color: Colors.black,
+                    //    color: Colors.black,
+                    color: Color(0xffffae2138),
                   ),
                 ),
               ),
@@ -61,7 +66,8 @@ Future<String?> showMyAyatShareDialog(BuildContext context, String ayat,
                   'Text with Background',
                   style: TextStyle(
                     fontSize: 17,
-                    color: Colors.black,
+                    //    color: Colors.black,
+                    color: Color(0xffffae2138),
                   ),
                 ),
               ),
