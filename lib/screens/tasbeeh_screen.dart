@@ -107,7 +107,6 @@ class _TasbeehScreenState extends State<TasbeehScreen>
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.englishTasbeeh),
-        elevation: 1,
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 13),

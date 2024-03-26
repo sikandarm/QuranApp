@@ -854,7 +854,6 @@ class _AllSadjaAyatsScreenState extends State<AllSadjaAyatsScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Sadja Ayats'),
-        elevation: 1,
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 4),

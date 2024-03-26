@@ -434,7 +434,6 @@ class _QuranEditionsScreenState extends State<QuranEditionsScreen> {
       //    backgroundColor: Colors.black54,
       appBar: AppBar(
         title: const Text('Quran Editions'),
-        elevation: 1,
       ),
       body: Obx(() {
         return isLoading.isTrue

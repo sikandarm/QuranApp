@@ -996,72 +996,139 @@ class _TasbeehCounterSectionState extends State<TasbeehCounterSection> {
 
   @override
   Widget build(BuildContext context) {
-    final englishStyle =
-        TextStyle(fontWeight: FontWeight.bold, color: Colors.white);
-    final arabicStyle = TextStyle(
-        fontWeight: FontWeight.bold, color: Colors.white, fontSize: 16);
+    const englishStyle = TextStyle(
+      fontWeight: FontWeight.bold,
+      color: Color(0xffff951d31),
+    );
+    const arabicStyle = TextStyle(
+        fontWeight: FontWeight.bold, color: Color(0xffff951d31), fontSize: 16);
 
     return Scaffold(
       appBar: AppBar(
         title: const Text('Tasbeeh'),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            SizedBox(height: 11),
-            Expanded(
-              child: ListView.builder(
-                itemCount: arabicZikr.length,
-                itemBuilder: (context, index) {
-                  return Container(
-                    child: Center(
-                      child: Card(
-                        child: InkWell(
-                          onTap: () {
-                            Get.to(
-                              TasbeehScreen(
-                                englishTasbeeh: englishZikr[index],
-                                urduTasbeeh: arabicZikr[index],
-                              ),
-                            );
-                          },
-                          child: ListTile(
-                            leading: Chip(
-                              backgroundColor: Colors.amber,
-                              elevation: 0,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(33)),
-                              label: Text(
-                                (index + 1).toString(),
-                                style: const TextStyle(color: Colors.black),
+        child: Stack(
+          fit: StackFit.expand,
+          children: [
+            Container(
+              width: Get.width,
+              child: Image.asset(
+                'assets/images/peach_bg_motorolla_new.png',
+                fit: BoxFit.cover,
+              ),
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                SizedBox(height: 11),
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: arabicZikr.length,
+                    itemBuilder: (context, index) {
+                      return Container(
+                        child: Center(
+                          child: Card(
+                            elevation: 0,
+                            margin: EdgeInsets.symmetric(
+                                vertical: 5, horizontal: 7),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(7),
+                              side: BorderSide(
+                                width: 1.3,
+                                color: Color(0xffffae2138),
                               ),
                             ),
-                            title: Row(
-                              children: [
-                                Text(
-                                  englishZikr[index],
-                                  style: englishStyle,
+                            color: Color.fromARGB(146, 255, 223, 204),
+                            child: InkWell(
+                              onTap: () {
+                                Get.to(
+                                  TasbeehScreen(
+                                    englishTasbeeh: englishZikr[index],
+                                    urduTasbeeh: arabicZikr[index],
+                                  ),
+                                );
+                              },
+                              child: ListTile(
+                                minVerticalPadding: 21,
+                                // leading: Chip(
+                                //   backgroundColor: Colors.amber,
+                                //   elevation: 0,
+                                //   shape: RoundedRectangleBorder(
+                                //       borderRadius: BorderRadius.circular(33)),
+                                //   label: Text(
+                                //     (index + 1).toString(),
+                                //     style: const TextStyle(color: Colors.black),
+                                //   ),
+                                // ),
+                                leading: Stack(
+                                  children: [
+                                    Image.asset(
+                                      'assets/images/ornament.png',
+                                      //     color: Color(0xffffae2138),
+                                      //    width: 65,
+                                      //   height: 65,
+                                      color: Color(0xffff951d31),
+                                    ),
+                                    Positioned(
+                                      top: 19.3,
+                                      left: (index + 1) > 9 && (index + 1) < 100
+                                          ? 20
+                                          : (index + 1) > 99
+                                              ? 16
+                                              : 24,
+                                      // top: 0,
+                                      //  right: 0,
+                                      // left: 0,
+                                      // bottom: 0,
+                                      child: Text(
+                                        (index + 1).toString(),
+                                        style: const TextStyle(
+                                          //   color: Color(0xffffae2138),
+                                          color: Color(0xffff951d31),
+                                          fontSize: 12.5,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                                Spacer(),
-                                Text(
-                                  arabicZikr[index],
-                                  style: arabicStyle,
+                                title: Row(
+                                  children: [
+                                    Text(
+                                      englishZikr[index],
+                                      style: englishStyle,
+                                    ),
+                                    Spacer(),
+                                    Text(
+                                      arabicZikr[index],
+                                      style: arabicStyle,
+                                    ),
+                                  ],
                                 ),
-                              ],
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    ),
-                  );
-                },
-              ),
+                      );
+                    },
+                  ),
+                ),
+              ],
             ),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
+        elevation: 3,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15),
+            side: BorderSide(
+              width: 1.5,
+              color: Color(0xffff951d31),
+            )),
+        backgroundColor: Color.fromARGB(254, 255, 223, 204),
+        foregroundColor: Color(0xffff951d31),
         onPressed: () {
           showDialog(
             context: context,
@@ -1119,7 +1186,10 @@ class _TasbeehCounterSectionState extends State<TasbeehCounterSection> {
             },
           );
         },
-        child: Icon(Icons.add),
+        child: Icon(
+          Icons.add,
+          size: 28,
+        ),
       ),
     );
   }

@@ -58,7 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
     prefs.setString('country', mapData['country']);
   }
 
-  final cardColor = const Color.fromARGB(146, 255, 223, 204);
+  final cardColor = Color.fromARGB(110, 216, 200, 189);
   final cardBorderColor = const Color(0xffffae2138);
 
   double cardElevation = 0.5;
@@ -76,7 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   Stack(
                     children: [
                       Image.asset(
-                        'assets/images/prayers_time_top_image.png',
+                        'assets/images/prayers_time_top_image_light.png',
                         width: MediaQuery.of(context).size.width,
                         height: 270,
                         fit: BoxFit.cover,
@@ -205,7 +205,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     height: 40,
                                     color: Color(0xffffae2138),
                                   ),
-                                  const SizedBox(width: 11),
+                                  const SizedBox(width: 4),
                                   const Text(
                                     'Today\'s Prayer Times',
                                     style: TextStyle(
@@ -274,6 +274,7 @@ class _HomeScreenState extends State<HomeScreen> {
       width: 160,
       height: 100,
       child: Card(
+        elevation: 0,
         color: cardColor,
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(

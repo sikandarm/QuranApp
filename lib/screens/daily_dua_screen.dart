@@ -11,7 +11,6 @@ class DailyDuaScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(title),
-        elevation: 1,
       ),
       body: SingleChildScrollView(
         child: Column(

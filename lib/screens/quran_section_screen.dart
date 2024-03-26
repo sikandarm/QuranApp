@@ -28,21 +28,23 @@ class QuranSectionScreen extends StatelessWidget {
       fontWeight: FontWeight.w600,
     );
 
-    const cardColor = Color.fromARGB(146, 255, 223, 204);
+    // const cardColor = Color.fromARGB(176, 255, 223, 204);
+    const cardColor = Color.fromARGB(110, 216, 200, 189);
     const cardBorderColor = Color(0xffffae2138);
 
-    double cardElevation = 0.5;
+    double cardElevation = 0;
+
     double cardBorderWidth = 2;
 
     return Scaffold(
       appBar: AppBar(
         //    backgroundColor: Color(0xffd99658),
         // backgroundColor: Color(0xffffd6c8),
+
         title: const Text(
           'Quran Section',
           // style: TextStyle(color: Color(0xffffbc735e)),
         ),
-        elevation: 1,
       ),
       body: Stack(
         fit: StackFit.expand,

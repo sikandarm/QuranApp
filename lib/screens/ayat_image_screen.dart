@@ -1,5 +1,8 @@
 import 'package:easy_image_viewer/easy_image_viewer.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 
 class AyatImageScreen extends StatelessWidget {
   const AyatImageScreen(
@@ -11,15 +14,32 @@ class AyatImageScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Padding(
-        padding: const EdgeInsets.all(13.0),
-        child: Container(
-          child: EasyImageView(
-            imageProvider: NetworkImage(
-              'https://cdn.islamic.network/quran/images/${surahNumber}_${ayatNumber}.png',
+      body: Stack(
+        //    fit: StackFit.expand,
+        children: [
+          Container(
+            height: Get.height,
+            child: Image.asset(
+              'assets/images/peach_bg_motorolla_new.png',
+              fit: BoxFit.cover,
             ),
           ),
-        ),
+          Image.asset(
+            'assets/images/Ayat_frame_1.png',
+            //  fit: BoxFit.cover,
+            height: Get.height,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(13.0),
+            child: Container(
+              child: EasyImageView(
+                imageProvider: NetworkImage(
+                  'https://cdn.islamic.network/quran/images/${surahNumber}_${ayatNumber}.png',
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

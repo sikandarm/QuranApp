@@ -77,7 +77,6 @@ class _SurahScreenState extends State<SurahScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.surahTitle),
-        elevation: 1,
         actions: [
           IconButton(
             onPressed: () async {

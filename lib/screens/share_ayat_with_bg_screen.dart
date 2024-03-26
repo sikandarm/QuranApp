@@ -79,7 +79,6 @@ class _ShareAyatWithBgScreenState extends State<ShareAyatWithBgScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Share Ayat'),
-        elevation: 1,
         actions: [
           IconButton(
             onPressed: () async {

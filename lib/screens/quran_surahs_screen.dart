@@ -169,7 +169,6 @@ class _QuranSurahsScreenState extends State<QuranSurahsScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Surahs'),
-        elevation: 1,
       ),
       body: Stack(
         fit: StackFit.expand,

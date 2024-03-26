@@ -221,7 +221,6 @@ class _SurahMetaDataScreenState extends State<SurahMetaDataScreen> {
       //    backgroundColor: Colors.black54,
       appBar: AppBar(
         title: const Text('Surah Encyclopedia'),
-        elevation: 1,
       ),
       body: SingleChildScrollView(
         child: Obx(

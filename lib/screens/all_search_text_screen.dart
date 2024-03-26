@@ -279,7 +279,6 @@ class _AllSearchTextScreenState extends State<AllSearchTextScreen> {
       // backgroundColor: Colors.black54,
       appBar: AppBar(
         title: const Text('All Text Occurrences'),
-        elevation: 1,
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 4),
