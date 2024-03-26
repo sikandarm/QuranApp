@@ -47,8 +47,12 @@ class QuranSectionScreen extends StatelessWidget {
       body: Stack(
         fit: StackFit.expand,
         children: [
+          // Image.asset(
+          //   'assets/images/peach_bg_motorolla.png',
+          //   fit: BoxFit.cover,
+          // ),
           Image.asset(
-            'assets/images/peach_bg_motorolla.png',
+            'assets/images/peach_bg_motorolla_new.png',
             fit: BoxFit.cover,
           ),
           SingleChildScrollView(

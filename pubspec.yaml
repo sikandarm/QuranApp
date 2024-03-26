@@ -89,14 +89,14 @@ dependencies:
   arabic_font: any
   easy_image_viewer: any
   just_audio: any
-  screenshot: ^2.3.0
-  path: ^1.9.0
-  path_provider: ^2.1.2
-  infinite_carousel: ^1.1.1
-  flutter_carousel_widget: ^2.2.0
-  flutter_material_color_picker: ^1.2.0
-  flex_color_picker: ^3.4.1
-  flutter_colorpicker: ^1.0.3
+  screenshot: any
+  path: any
+  path_provider: any
+  # infinite_carousel: any
+  flutter_carousel_widget: any
+  # flutter_material_color_picker: any
+  flex_color_picker: any
+  # flutter_colorpicker: any
 
 dev_dependencies:
   flutter_test:

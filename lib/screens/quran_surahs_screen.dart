@@ -138,6 +138,7 @@
 //   }
 // }
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -170,84 +171,141 @@ class _QuranSurahsScreenState extends State<QuranSurahsScreen> {
         title: const Text('Surahs'),
         elevation: 1,
       ),
-      body: Column(
+      body: Stack(
+        fit: StackFit.expand,
         children: [
-          Expanded(
-            child: ListView.builder(
-              itemCount: Keys.surahNames.length,
-              itemBuilder: (context, index) {
-                return InkWell(
-                  onTap: () {
-                    // Calculate sum of verses up to the selected index
-                    int sum = 0;
-
-                    totalVerses = 0;
-
-                    for (int i = 0; i < index; i++) {
-                      sum += Keys.surahAyats[i];
-                    }
-                    setState(() {
-                      totalVerses = sum;
-                    });
-
-                    print('TOTAL VERSES: ' + totalVerses.toString());
-                    Get.to(SurahScreen(
-                      totalPreviousVerses: totalVerses,
-                      surahTitle: Keys.surahNames[index],
-                      language: widget.language,
-                      title: widget.title,
-                      textDirection: widget.textDirection,
-                      surahNumber: (index + 1),
-                    ));
-                  },
-                  child: Card(
-                    child: ListTile(
-                      leading: Chip(
-                        backgroundColor: Colors.amber,
-                        elevation: 0,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(33),
-                        ),
-                        label: Text(
-                          (index + 1).toString(),
-                          style: const TextStyle(color: Colors.black),
-                        ),
-                      ),
-                      trailing: Text(
-                        Keys.surahNamesArabic[index].toString(),
-                        style: const TextStyle(
-                          fontSize: 19,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      title: Text(
-                        Keys.surahNames[index],
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      subtitle: Text(
-                        'verses: ' + Keys.surahAyats[index].toString(),
-                        style: const TextStyle(
-                          fontSize: 12,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ),
-                );
-              },
-            ),
+          Image.asset(
+            'assets/images/peach_bg_motorolla_new.png',
+            fit: BoxFit.cover,
           ),
-          Text(
-            'Total Verses: $totalVerses',
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-            ),
+          Column(
+            children: [
+              SizedBox(height: 5),
+              Expanded(
+                child: ListView.builder(
+                  itemCount: Keys.surahNames.length,
+                  itemBuilder: (context, index) {
+                    return InkWell(
+                      onTap: () {
+                        // Calculate sum of verses up to the selected index
+                        int sum = 0;
+
+                        totalVerses = 0;
+
+                        for (int i = 0; i < index; i++) {
+                          sum += Keys.surahAyats[i];
+                        }
+                        setState(() {
+                          totalVerses = sum;
+                        });
+
+                        print('TOTAL VERSES: ' + totalVerses.toString());
+                        Get.to(SurahScreen(
+                          totalPreviousVerses: totalVerses,
+                          surahTitle: Keys.surahNames[index],
+                          language: widget.language,
+                          title: widget.title,
+                          textDirection: widget.textDirection,
+                          surahNumber: (index + 1),
+                        ));
+                      },
+                      child: Card(
+                        elevation: 0,
+                        margin:
+                            EdgeInsets.symmetric(vertical: 5, horizontal: 7),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(7),
+                          side: BorderSide(
+                            width: 1.3,
+                            color: Color(0xffffae2138),
+                          ),
+                        ),
+                        color: Color.fromARGB(146, 255, 223, 204),
+                        child: ListTile(
+                          minVerticalPadding: 21,
+                          // leading: Chip(
+                          //   backgroundColor: Colors.amber,
+                          //   elevation: 0,
+                          //   shape: RoundedRectangleBorder(
+                          //     borderRadius: BorderRadius.circular(33),
+                          //   ),
+                          //   label: Text(
+                          //     (index + 1).toString(),
+                          //     style: const TextStyle(color: Colors.black),
+                          //   ),
+                          // ),
+                          leading: Stack(
+                            children: [
+                              Image.asset(
+                                'assets/images/ornament.png',
+                                //     color: Color(0xffffae2138),
+                                //    width: 65,
+                                //   height: 65,
+                                color: Color(0xffff951d31),
+                              ),
+                              Positioned(
+                                top: 19.3,
+                                left: (index + 1) > 9 && (index + 1) < 100
+                                    ? 20
+                                    : (index + 1) > 99
+                                        ? 16
+                                        : 24,
+                                // top: 0,
+                                //  right: 0,
+                                // left: 0,
+                                // bottom: 0,
+                                child: Text(
+                                  (index + 1).toString(),
+                                  style: const TextStyle(
+                                    //   color: Color(0xffffae2138),
+                                    color: Color(0xffff951d31),
+                                    fontSize: 12.5,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          trailing: Text(
+                            Keys.surahNamesArabic[index].toString(),
+                            style: const TextStyle(
+                              fontSize: 19,
+                              //   color: Color(0xffffae2138),
+                              color: Color(0xffff951d31),
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          title: Text(
+                            Keys.surahNames[index],
+                            style: const TextStyle(
+                              //   color: Color(0xffffae2138),
+                              color: Color(0xffff951d31),
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          subtitle: Text(
+                            'verses: ' + Keys.surahAyats[index].toString(),
+                            style: const TextStyle(
+                              fontSize: 12,
+                              //   color: Color(0xffffae2138),
+                              color: Color(0xffff951d31),
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+              // Text(
+              //   'Total Verses: $totalVerses',
+              //   style: const TextStyle(
+              //     fontSize: 16,
+              //     fontWeight: FontWeight.bold,
+              //   ),
+              // ),
+            ],
           ),
         ],
       ),

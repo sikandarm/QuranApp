@@ -4,6 +4,7 @@ import 'dart:io';
 import 'dart:typed_data';
 import 'dart:ui' as ui;
 
+//import 'package:flex_color_picker/flex_color_picker.dart';
 import 'package:flex_color_picker/flex_color_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -12,9 +13,10 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
-import 'package:flutter_material_color_picker/flutter_material_color_picker.dart';
+//import 'package:flutter_colorpicker/flutter_colorpicker.dart';
+//import 'package:flutter_material_color_picker/flutter_material_color_picker.dart';
 import 'package:get/get.dart';
-import 'package:infinite_carousel/infinite_carousel.dart';
+//import 'package:infinite_carousel/infinite_carousel.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:share_plus/share_plus.dart';
@@ -107,8 +109,12 @@ class _ShareAyatWithBgScreenState extends State<ShareAyatWithBgScreen> {
       body: Stack(
         fit: StackFit.expand,
         children: [
+          // Image.asset(
+          //   'assets/images/peach_bg_motorolla.png',
+          //   fit: BoxFit.cover,
+          // ),
           Image.asset(
-            'assets/images/peach_bg_motorolla.png',
+            'assets/images/peach_bg_motorolla_new.png',
             fit: BoxFit.cover,
           ),
           Column(
@@ -195,14 +201,15 @@ class _ShareAyatWithBgScreenState extends State<ShareAyatWithBgScreen> {
               // )
 
               Container(
-                margin: EdgeInsets.symmetric(vertical: 8, horizontal: 1),
+                margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 1),
                 decoration: BoxDecoration(
-                    color: ui.Color.fromARGB(93, 255, 223, 204),
-                    border: Border.all(color: Color(0xffffae2138), width: 2)),
+                    color: ui.Color.fromARGB(134, 255, 223, 204),
+                    border:
+                        Border.all(color: const Color(0xffffae2138), width: 2)),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(
+                    const SizedBox(
                         //     height: 11,
                         ),
                     Padding(
@@ -210,7 +217,7 @@ class _ShareAyatWithBgScreenState extends State<ShareAyatWithBgScreen> {
                           horizontal: 13, vertical: 0),
                       child: Row(
                         children: [
-                          Text(
+                          const Text(
                             'Apply Overlay',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
@@ -218,7 +225,7 @@ class _ShareAyatWithBgScreenState extends State<ShareAyatWithBgScreen> {
                               color: Color(0xffffae2138),
                             ),
                           ),
-                          Spacer(),
+                          const Spacer(),
                           // Switch.adaptive(value: true, onChanged: (val) {}),
                           Container(
                             child: Switch(
@@ -226,15 +233,15 @@ class _ShareAyatWithBgScreenState extends State<ShareAyatWithBgScreen> {
                                   const ui.Color.fromARGB(131, 255, 255, 255),
                               //   inactiveThumbColor: Colors.white,
 
-                              trackOutlineColor:
-                                  MaterialStatePropertyAll(Color(0xffffae2138)),
+                              trackOutlineColor: const MaterialStatePropertyAll(
+                                  Color(0xffffae2138)),
                               //  inactiveThumbImage: ,
-                              activeTrackColor: Color(0xffffae2138),
-                              activeColor: Color(0xffffdfcc),
+                              activeTrackColor: const Color(0xffffae2138),
+                              activeColor: const Color(0xffffdfcc),
                               // thumbColor: MaterialStatePropertyAll(
                               //   Color(0xffffdfcc),
                               // ),
-                              inactiveThumbColor: Color(0xffffae2138),
+                              inactiveThumbColor: const Color(0xffffae2138),
                               value: isAppOverlaySliderVisible,
                               onChanged: (val) {
                                 isAppOverlaySliderVisible = val;
@@ -250,6 +257,7 @@ class _ShareAyatWithBgScreenState extends State<ShareAyatWithBgScreen> {
                       data: const SliderThemeData(
                         thumbColor: Color(0xffffae2138),
                         activeTrackColor: Color(0xffffae2138),
+                        inactiveTrackColor: ui.Color.fromARGB(109, 108, 0, 18),
                         trackHeight: 1.3,
                         thumbShape:
                             RoundSliderThumbShape(enabledThumbRadius: 7.5),
@@ -263,7 +271,7 @@ class _ShareAyatWithBgScreenState extends State<ShareAyatWithBgScreen> {
                             setState(() {});
                           }),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 3,
                     ),
                     Container(
@@ -329,9 +337,9 @@ class _ShareAyatWithBgScreenState extends State<ShareAyatWithBgScreen> {
                             );
                           }),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 13, vertical: 11),
+                    const Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 13, vertical: 11),
                       child: Text(
                         'Font Size',
                         style: TextStyle(
@@ -345,6 +353,7 @@ class _ShareAyatWithBgScreenState extends State<ShareAyatWithBgScreen> {
                       data: const SliderThemeData(
                         thumbColor: Color(0xffffae2138),
                         activeTrackColor: Color(0xffffae2138),
+                        inactiveTrackColor: ui.Color.fromARGB(109, 108, 0, 18),
                         trackHeight: 1.3,
                         thumbShape:
                             RoundSliderThumbShape(enabledThumbRadius: 7.5),
@@ -361,7 +370,7 @@ class _ShareAyatWithBgScreenState extends State<ShareAyatWithBgScreen> {
                     ),
                     Center(
                       child: IconButton(
-                        color: Color(0xffffae2138),
+                        color: const Color(0xffffae2138),
                         iconSize: 34,
                         onPressed: () async {
                           //  ayatTextColor = await colorPickerDialog(context);
@@ -388,7 +397,7 @@ class _ShareAyatWithBgScreenState extends State<ShareAyatWithBgScreen> {
                                       onPressed: () {
                                         Navigator.of(context).pop();
                                       },
-                                      child: Text('OK'))
+                                      child: const Text('OK'))
                                   // FlatButton(
                                   //   child: Text('OK'),
                                   //   onPressed: () {
@@ -400,7 +409,7 @@ class _ShareAyatWithBgScreenState extends State<ShareAyatWithBgScreen> {
                             },
                           );
                         },
-                        icon: Icon(Icons.color_lens),
+                        icon: const Icon(Icons.color_lens),
                       ),
                     ),
                   ],
