@@ -211,9 +211,9 @@ class _SurahMetaDataScreenState extends State<SurahMetaDataScreen> {
 
   final headingStyle = const TextStyle(
     fontWeight: FontWeight.bold,
-    color: Colors.amber,
+    color: Color(0xffff951d31),
   );
-  final valueStyle = const TextStyle(color: Colors.white, fontSize: 15.5);
+  final valueStyle = const TextStyle(color: Colors.black, fontSize: 15.5);
 
   @override
   Widget build(BuildContext context) {
@@ -222,36 +222,72 @@ class _SurahMetaDataScreenState extends State<SurahMetaDataScreen> {
       appBar: AppBar(
         title: const Text('Surah Encyclopedia'),
       ),
-      body: SingleChildScrollView(
-        child: Obx(
-          () {
-            return isLoading.isTrue
-                ? const Column(
-                    children: [
-                      SizedBox(
-                        height: 300,
-                      ),
-                      Center(child: CircularProgressIndicator()),
-                    ],
-                  )
-                : SizedBox(
-                    width: Get.width,
-                    height: Get.height,
-                    child: ListView.builder(
-                      itemCount: controller.allSurahMetaData.value!.data!
-                          .surahs!.references!.length,
-                      itemBuilder: (context, index) {
-                        return Card(
-                          child: Padding(
-                            padding: const EdgeInsets.all(13.0),
-                            child: MetaDataTile(index),
+      body: Stack(
+        children: [
+          Container(
+            width: Get.width,
+            height: Get.height,
+            child: Image.asset(
+              'assets/images/peach_bg_motorolla_new.png',
+              fit: BoxFit.cover,
+            ),
+          ),
+          SingleChildScrollView(
+            child: Obx(
+              () {
+                return isLoading.isTrue
+                    ? const Column(
+                        children: [
+                          SizedBox(
+                            height: 300,
                           ),
-                        );
-                      },
-                    ),
-                  );
-          },
-        ),
+                          Center(child: CircularProgressIndicator()),
+                        ],
+                      )
+                    : Column(
+                        children: [
+                          SizedBox(height: 13),
+                          SizedBox(
+                            width: Get.width,
+                            height: Get.height,
+                            child: ListView.builder(
+                              itemCount: controller.allSurahMetaData.value!
+                                  .data!.surahs!.references!.length,
+                              itemBuilder: (context, index) {
+                                return Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 9.0,
+                                    vertical: 5,
+                                  ),
+                                  child: Card(
+                                    margin: EdgeInsets.zero,
+                                    color: const Color.fromARGB(
+                                        146, 255, 223, 204),
+                                    elevation: 0,
+                                    // color: cardColor,
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(
+                                          8,
+                                        ),
+                                        side: const BorderSide(
+                                          width: 2,
+                                          color: Color(0xffffae2138),
+                                        )),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(13.0),
+                                      child: MetaDataTile(index),
+                                    ),
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                        ],
+                      );
+              },
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -276,7 +312,7 @@ class _SurahMetaDataScreenState extends State<SurahMetaDataScreen> {
         ),
         const Divider(
           thickness: 0.5,
-          color: Colors.amber,
+          color: Color(0xffff951d31),
         ),
         Row(
           children: [
@@ -293,7 +329,7 @@ class _SurahMetaDataScreenState extends State<SurahMetaDataScreen> {
         ),
         const Divider(
           thickness: 0.5,
-          color: Colors.amber,
+          color: Color(0xffff951d31),
         ),
         Row(
           children: [
@@ -310,7 +346,7 @@ class _SurahMetaDataScreenState extends State<SurahMetaDataScreen> {
         ),
         const Divider(
           thickness: 0.5,
-          color: Colors.amber,
+          color: Color(0xffff951d31),
         ),
         Row(
           children: [
@@ -327,7 +363,7 @@ class _SurahMetaDataScreenState extends State<SurahMetaDataScreen> {
         ),
         const Divider(
           thickness: 0.5,
-          color: Colors.amber,
+          color: Color(0xffff951d31),
         ),
         Row(
           children: [

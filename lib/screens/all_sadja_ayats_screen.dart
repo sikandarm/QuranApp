@@ -832,7 +832,8 @@ class AllSadjaAyatsScreen extends StatefulWidget {
 class _AllSadjaAyatsScreenState extends State<AllSadjaAyatsScreen> {
   final CommonController controller = Get.put(CommonController());
   late RxBool isLoading;
-  double _fontSize = 17.5;
+  double _fontSize = 18;
+
   // String _selectedArabicFont =
   //    ArabicFont.elMessiri; // Use constant provided by arabic_font package
 
@@ -855,124 +856,189 @@ class _AllSadjaAyatsScreenState extends State<AllSadjaAyatsScreen> {
       appBar: AppBar(
         title: const Text('Sadja Ayats'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 4),
-        child: Obx(() {
-          if (isLoading.value) {
-            return const Center(child: CircularProgressIndicator());
-          } else {
-            if (controller.allSadjaAyatsInQuran.value.data != null &&
-                controller.allSadjaAyatsInQuran.value.data!.ayahs != null &&
-                controller.allSadjaAyatsInQuran.value.data!.ayahs!.isNotEmpty) {
-              return SingleChildScrollView(
-                child: Column(
-                  children: [
-                    for (int i = 0;
-                        i <
-                            controller
-                                .allSadjaAyatsInQuran.value.data!.ayahs!.length;
-                        i++)
-                      Card(
-                        child: Padding(
-                          padding: const EdgeInsets.all(11.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              InkWell(
-                                onTap: () async {
-                                  //    await Share.share(
-                                  //      controller.allSadjaAyatsInQuran.value.data!
-                                  //         .ayahs![i].text!,
-                                  //   );
-
-                                  await showMyAyatShareDialog(
-                                    context,
-                                    controller.allSadjaAyatsInQuran.value.data!
-                                        .ayahs![i].text!,
-                                    controller.allSadjaAyatsInQuran.value.data!
-                                        .ayahs![i].surah!.number
-                                        .toString(),
-                                    controller.allSadjaAyatsInQuran.value.data!
-                                        .ayahs![i].numberInSurah!,
-                                  );
-                                  /////////////////////////////////////
-
-                                  //    Get.to(ShareAyatWithBgScreen(
-                                  //     text: controller.allSadjaAyatsInQuran.value
-                                  //         .data!.ayahs![i].text!,
-                                  //  ));
-                                },
-                                child: Text(
+      body: Stack(
+        fit: StackFit.expand,
+        children: [
+          Container(
+            width: Get.width,
+            child: Image.asset(
+              'assets/images/peach_bg_motorolla_new.png',
+              fit: BoxFit.cover,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 4),
+            child: Obx(() {
+              if (isLoading.value) {
+                return const Center(child: CircularProgressIndicator());
+              } else {
+                if (controller.allSadjaAyatsInQuran.value.data != null &&
+                    controller.allSadjaAyatsInQuran.value.data!.ayahs != null &&
+                    controller
+                        .allSadjaAyatsInQuran.value.data!.ayahs!.isNotEmpty) {
+                  return SingleChildScrollView(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8.0, vertical: 2),
+                      child: Column(
+                        children: [
+                          for (int i = 0;
+                              i <
                                   controller.allSadjaAyatsInQuran.value.data!
-                                      .ayahs![i].text!,
-                                  textAlign: TextAlign.right,
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: _fontSize,
-                                    //  fontFamily:
-                                    //    _selectedArabicFont, // Use selected Arabic font
-                                  ),
+                                      .ayahs!.length;
+                              i++)
+                            Column(
+                              children: [
+                                SizedBox(height: 7),
+                                Card(
+                                  margin: EdgeInsets.zero,
+                                  color:
+                                      const Color.fromARGB(146, 255, 223, 204),
+                                  elevation: 0,
+                                  // color: cardColor,
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(
+                                        8,
+                                      ),
+                                      side: const BorderSide(
+                                        width: 2,
+                                        color: Color(0xffffae2138),
+                                      )),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(11.0),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.end,
+                                      children: [
+                                        InkWell(
+                                          onTap: () async {
+                                            //    await Share.share(
+                                            //      controller.allSadjaAyatsInQuran.value.data!
+                                            //         .ayahs![i].text!,
+                                            //   );
 
-                                  //   style: ArabicTextStyle(
-                                  //   arabicFont: _selectedArabicFont,
-                                  //   color: Colors.white,
-                                  // fontSize: _fontSize,
-                                  // ),
-                                ),
-                              ),
-                              const SizedBox(height: 11),
-                              Row(
-                                children: [
-                                  const Text(
-                                    'Surah: ',
-                                    style: TextStyle(color: Colors.amber),
-                                  ),
-                                  const SizedBox(width: 7),
-                                  Text(
-                                    controller.allSadjaAyatsInQuran.value.data!
-                                        .ayahs![i].surah!.name!,
-                                    style: const TextStyle(color: Colors.white),
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(height: 5),
-                              Row(
-                                children: [
-                                  const Text(
-                                    'Ayat No:',
-                                    style: TextStyle(color: Colors.amber),
-                                  ),
-                                  const SizedBox(width: 7),
-                                  Text(
-                                    controller.allSadjaAyatsInQuran.value.data!
-                                        .ayahs![i].numberInSurah
-                                        .toString(),
-                                    style: const TextStyle(
-                                      color: Colors.white,
+                                            await showMyAyatShareDialog(
+                                              context,
+                                              controller.allSadjaAyatsInQuran
+                                                  .value.data!.ayahs![i].text!,
+                                              controller
+                                                  .allSadjaAyatsInQuran
+                                                  .value
+                                                  .data!
+                                                  .ayahs![i]
+                                                  .surah!
+                                                  .number
+                                                  .toString(),
+                                              controller
+                                                  .allSadjaAyatsInQuran
+                                                  .value
+                                                  .data!
+                                                  .ayahs![i]
+                                                  .numberInSurah!,
+                                            );
+                                            /////////////////////////////////////
+
+                                            //    Get.to(ShareAyatWithBgScreen(
+                                            //     text: controller.allSadjaAyatsInQuran.value
+                                            //         .data!.ayahs![i].text!,
+                                            //  ));
+                                          },
+                                          child: Text(
+                                            controller.allSadjaAyatsInQuran
+                                                .value.data!.ayahs![i].text!,
+                                            textAlign: TextAlign.right,
+                                            style: TextStyle(
+                                              // color: Colors.white,
+                                              color: Color(0xffff951d31),
+                                              fontSize: _fontSize,
+                                              //  fontFamily:
+                                              //    _selectedArabicFont, // Use selected Arabic font
+                                            ),
+
+                                            //   style: ArabicTextStyle(
+                                            //   arabicFont: _selectedArabicFont,
+                                            //   color: Colors.white,
+                                            // fontSize: _fontSize,
+                                            // ),
+                                          ),
+                                        ),
+                                        const SizedBox(height: 11),
+                                        Row(
+                                          children: [
+                                            const Text(
+                                              'Surah: ',
+                                              style: TextStyle(
+                                                color: Color(0xffff951d31),
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            const SizedBox(width: 7),
+                                            Text(
+                                              controller
+                                                  .allSadjaAyatsInQuran
+                                                  .value
+                                                  .data!
+                                                  .ayahs![i]
+                                                  .surah!
+                                                  .name!,
+                                              style: const TextStyle(
+                                                color: Colors.black,
+                                                //  fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        const SizedBox(height: 5),
+                                        Row(
+                                          children: [
+                                            const Text(
+                                              'Ayat No:',
+                                              style: TextStyle(
+                                                color: Color(0xffff951d31),
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            const SizedBox(width: 7),
+                                            Text(
+                                              controller
+                                                  .allSadjaAyatsInQuran
+                                                  .value
+                                                  .data!
+                                                  .ayahs![i]
+                                                  .numberInSurah
+                                                  .toString(),
+                                              style: const TextStyle(
+                                                color: Colors.black,
+                                                //  fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
                                     ),
                                   ),
-                                ],
-                              ),
-                            ],
+                                ),
+                              ],
+                            ),
+                          const Divider(
+                            thickness: 0.5,
                           ),
-                        ),
+                        ],
                       ),
-                    const Divider(
-                      thickness: 0.5,
                     ),
-                  ],
-                ),
-              );
-            } else {
-              return const Center(
-                child: Text(
-                  'Not Found!',
-                  style: TextStyle(color: Colors.white),
-                ),
-              );
-            }
-          }
-        }),
+                  );
+                } else {
+                  return const Center(
+                    child: Text(
+                      'Not Found!',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  );
+                }
+              }
+            }),
+          ),
+        ],
       ),
       // floatingActionButton: FloatingActionButton(
       //   onPressed: () {

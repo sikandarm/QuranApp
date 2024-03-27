@@ -389,6 +389,7 @@
 //////////////////////////////////////////////////////////////////
 
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import '../controller/commonController.dart';
 import '../models/quran_editions_model.dart';
@@ -424,10 +425,10 @@ class _QuranEditionsScreenState extends State<QuranEditionsScreen> {
   Widget build(BuildContext context) {
     const headingStyle = TextStyle(
       fontWeight: FontWeight.bold,
-      color: Colors.amber,
+      color: Color(0xffff951d31),
     );
     const valueStyle = TextStyle(
-      color: Colors.white,
+      color: Colors.black,
     );
 
     return Scaffold(
@@ -438,32 +439,74 @@ class _QuranEditionsScreenState extends State<QuranEditionsScreen> {
       body: Obx(() {
         return isLoading.isTrue
             ? const Center(child: CircularProgressIndicator())
-            : ListView.builder(
-                itemCount:
-                    controller.allQuranEditionsController.value.data!.length,
-                itemBuilder: (context, i) {
-                  return InkWell(
-                    onTap: () {
-                      Get.to(QuranSurahsScreen(
-                        language: controller.allQuranEditionsController.value
-                            .data![i].language!,
-                        title: controller
-                            .allQuranEditionsController.value.data![i].name!,
-                        textDirection: controller.allQuranEditionsController
-                            .value.data![i].direction!,
-                      ));
-                    },
-                    child: QuranEditionTileCard(headingStyle, i, valueStyle),
-                  );
-                },
+            : Stack(
+                children: [
+                  Container(
+                    width: Get.width,
+                    height: Get.height,
+                    child: Image.asset(
+                      'assets/images/peach_bg_motorolla_new.png',
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  Column(
+                    children: [
+                      SizedBox(height: 9),
+                      Expanded(
+                        child: ListView.builder(
+                          itemCount: controller
+                              .allQuranEditionsController.value.data!.length,
+                          itemBuilder: (context, i) {
+                            return InkWell(
+                              onTap: () {
+                                Get.to(QuranSurahsScreen(
+                                  language: controller
+                                      .allQuranEditionsController
+                                      .value
+                                      .data![i]
+                                      .language!,
+                                  title: controller.allQuranEditionsController
+                                      .value.data![i].name!,
+                                  textDirection: controller
+                                      .allQuranEditionsController
+                                      .value
+                                      .data![i]
+                                      .direction!,
+                                ));
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 9.0, vertical: 5),
+                                child: QuranEditionTileCard(
+                                    headingStyle, i, valueStyle),
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
               );
       }),
     );
   }
 
-  Card QuranEditionTileCard(
+  Widget QuranEditionTileCard(
       TextStyle headingStyle, int i, TextStyle valueStyle) {
     return Card(
+      margin: EdgeInsets.zero,
+      color: const Color.fromARGB(146, 255, 223, 204),
+      elevation: 0,
+      // color: cardColor,
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(
+            8,
+          ),
+          side: const BorderSide(
+            width: 2,
+            color: Color(0xffffae2138),
+          )),
       child: Padding(
         padding: const EdgeInsets.all(13.0),
         child: Column(
@@ -481,7 +524,7 @@ class _QuranEditionsScreenState extends State<QuranEditionsScreen> {
               ],
             ),
             const Divider(
-              color: Colors.amber,
+              color: Color(0xffff951d31),
               thickness: 0.5,
             ),
             Row(
@@ -501,7 +544,7 @@ class _QuranEditionsScreenState extends State<QuranEditionsScreen> {
               ],
             ),
             const Divider(
-              color: Colors.amber,
+              color: Color(0xffff951d31),
               thickness: 0.5,
             ),
             // Row(

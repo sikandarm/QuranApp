@@ -63,7 +63,7 @@ class _SurahScreenState extends State<SurahScreen> {
       textColorChangeList.add(false); // Initialize all text color to false
     }
     isLoading(false);
-    print('ok: ' + controller.surah.value.data!.ayahs![0].number.toString());
+    print('ok: ${controller.surah.value.data!.ayahs![0].number}');
   }
 
   @override
@@ -94,168 +94,214 @@ class _SurahScreenState extends State<SurahScreen> {
           ),
         ],
       ),
-      body: Obx(() {
-        return isLoading.isTrue
-            ? const Center(child: CircularProgressIndicator())
-            : Padding(
-                padding: const EdgeInsets.all(13.0),
-                child: ListView.builder(
-                  itemCount: controller.surah.value.data!.ayahs!.length,
-                  itemBuilder: (context, index) {
-                    final ayah = controller.surah.value.data!.ayahs![index];
+      body: Stack(
+        fit: StackFit.expand,
+        children: [
+          Container(
+            width: Get.width,
+            height: Get.height,
+            child: Image.asset(
+              'assets/images/peach_bg_motorolla_new.png',
+              fit: BoxFit.cover,
+            ),
+          ),
+          Obx(() {
+            return isLoading.isTrue
+                ? const Center(child: CircularProgressIndicator())
+                : Padding(
+                    padding: const EdgeInsets.all(13.0),
+                    child: ListView.builder(
+                      itemCount: controller.surah.value.data!.ayahs!.length,
+                      itemBuilder: (context, index) {
+                        final ayah = controller.surah.value.data!.ayahs![index];
 
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Container(
-                          width: Get.width,
-                          child: InkWell(
-                            borderRadius: BorderRadius.circular(21),
-                            onTap: () async {
-                              Get.to(
-                                AyatImageScreen(
-                                  surahNumber: widget.surahNumber,
-                                  ayatNumber: (index + 1),
-                                ),
-                              );
-                            },
-                            child: Card(
-                              color: textColorChangeList[index]
-                                  ? Colors.amber
-                                  : null, // Change text color
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            const SizedBox(height: 9),
+                            Container(
+                              width: Get.width,
+                              child: InkWell(
+                                borderRadius: BorderRadius.circular(21),
+                                onTap: () async {
+                                  Get.to(
+                                    AyatImageScreen(
+                                      surahNumber: widget.surahNumber,
+                                      ayatNumber: (index + 1),
+                                    ),
+                                  );
+                                },
+                                child: Card(
+                                  margin: EdgeInsets.zero,
+                                  color:
+                                      const Color.fromARGB(146, 255, 223, 204),
+                                  elevation: 0,
+                                  // color: cardColor,
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(
+                                        8,
+                                      ),
+                                      side: const BorderSide(
+                                        width: 2,
+                                        color: Color(0xffffae2138),
+                                      )),
+                                  //    color: textColorChangeList[index]
+                                  //      ? Colors.amber
+                                  //    : null, // Change text color
 
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.end,
-                                  children: [
-                                    playOrPauseIconList[index]
-                                        ? InkWell(
-                                            onTap: () {
-                                              isWholeSurahAudioIsPlaying =
-                                                  false;
-                                              playOrPauseIconList[index] =
-                                                  !playOrPauseIconList[index];
-                                              audioPlayer.pause();
-                                              textColorChangeList[index] =
-                                                  false; // Change text color state
-                                              setState(() {});
-                                            },
-                                            child: Icon(
-                                              Icons.pause,
-                                              color: textColorChangeList[index]
-                                                  ? Colors.white
-                                                  : null, // Change text color
-                                            ),
-                                          )
-                                        : InkWell(
-                                            onTap: () async {
-                                              isWholeSurahAudioIsPlaying =
-                                                  false;
-                                              if (audioPlayer.playing) {
-                                                audioPlayer.pause();
-                                              }
-                                              for (var i = 0;
-                                                  i <
-                                                      playOrPauseIconList
-                                                          .length;
-                                                  i++) {
-                                                playOrPauseIconList[i] = false;
-                                                textColorChangeList[i] =
-                                                    false; // Change text color state
-                                              }
-                                              playOrPauseIconList[index] =
-                                                  !playOrPauseIconList[index];
-                                              textColorChangeList[index] =
-                                                  true; // Change text color state
-                                              setState(() {});
-                                              print('widget.totalPreviousVerses + index + 1: ' +
-                                                  (widget.totalPreviousVerses +
-                                                          index +
-                                                          1)
-                                                      .toString());
-                                              print(
-                                                  '======================================');
-                                              //  controller.surah.value.data!.ayahs![0].number;
-                                              await audioPlayer.setUrl(
-                                                  'https://cdn.islamic.network/quran/audio/128/ar.alafasy/${(controller.surah.value.data!.ayahs![index].number)}.mp3');
-                                              //    await audioPlayer.setUrl(
-                                              //      'https://cdn.islamic.network/quran/audio/128/ar.alafasy/${(widget.totalPreviousVerses + index + 1)}.mp3');
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.end,
+                                      children: [
+                                        playOrPauseIconList[index]
+                                            ? InkWell(
+                                                onTap: () {
+                                                  isWholeSurahAudioIsPlaying =
+                                                      false;
+                                                  playOrPauseIconList[index] =
+                                                      !playOrPauseIconList[
+                                                          index];
+                                                  audioPlayer.pause();
+                                                  textColorChangeList[index] =
+                                                      false; // Change text color state
+                                                  setState(() {});
+                                                },
+                                                child: Icon(
+                                                  Icons.pause,
+                                                  color: textColorChangeList[
+                                                          index]
+                                                      ? Colors.black
+                                                      : const Color(
+                                                          0xffff951d31), // Change text color
+                                                ),
+                                              )
+                                            : InkWell(
+                                                onTap: () async {
+                                                  isWholeSurahAudioIsPlaying =
+                                                      false;
+                                                  if (audioPlayer.playing) {
+                                                    audioPlayer.pause();
+                                                  }
+                                                  for (var i = 0;
+                                                      i <
+                                                          playOrPauseIconList
+                                                              .length;
+                                                      i++) {
+                                                    playOrPauseIconList[i] =
+                                                        false;
+                                                    textColorChangeList[i] =
+                                                        false; // Change text color state
+                                                  }
+                                                  playOrPauseIconList[index] =
+                                                      !playOrPauseIconList[
+                                                          index];
+                                                  textColorChangeList[index] =
+                                                      true; // Change text color state
+                                                  setState(() {});
+                                                  print(
+                                                      'widget.totalPreviousVerses + index + 1: ${widget.totalPreviousVerses + index + 1}');
+                                                  print(
+                                                      '======================================');
+                                                  //  controller.surah.value.data!.ayahs![0].number;
+                                                  await audioPlayer.setUrl(
+                                                      'https://cdn.islamic.network/quran/audio/128/ar.alafasy/${(controller.surah.value.data!.ayahs![index].number)}.mp3');
+                                                  //    await audioPlayer.setUrl(
+                                                  //      'https://cdn.islamic.network/quran/audio/128/ar.alafasy/${(widget.totalPreviousVerses + index + 1)}.mp3');
 
-                                              await audioPlayer.play();
-                                            },
-                                            child: Icon(
-                                              Icons.play_arrow,
-                                              color: textColorChangeList[index]
-                                                  ? Colors.black
-                                                  : Colors
-                                                      .amber, // Change text color
+                                                  await audioPlayer.play();
+                                                },
+                                                child: Icon(
+                                                  Icons.play_arrow_outlined,
+                                                  color: textColorChangeList[
+                                                          index]
+                                                      ? Colors.black
+                                                      : const Color(
+                                                          0xffff951d31), // Change text color
+                                                ),
+                                              ),
+                                        const SizedBox(width: 4),
+                                        InkWell(
+                                          child: Icon(
+                                            Icons.share,
+                                            color: textColorChangeList[index]
+                                                ? Colors.black
+                                                : const Color(0xffff951d31),
+                                            size: 17,
+                                          ),
+                                          onTap: () async {
+                                            //          itemCount: controller.surah.value.data!.ayahs!.length,
+                                            //    itemBuilder: (context, index) {
+                                            final ayah = controller.surah.value
+                                                .data!.ayahs![index];
+                                            //////
+                                            await showMyAyatShareDialog(
+                                              context,
+                                              ayah.text!,
+                                              widget.surahNumber.toString(),
+                                              ayah.numberInSurah!,
+                                            );
+                                          },
+                                        ),
+                                        Expanded(
+                                          child: RichText(
+                                            textDirection: TextDirection.rtl,
+                                            text: TextSpan(
+                                              children: [
+                                                TextSpan(
+                                                  text: ayah.text.toString(),
+                                                  style: const TextStyle(
+                                                    fontSize: 20,
+                                                    color: Color(0xffff951d31),
+                                                  ),
+                                                ),
+                                                const TextSpan(text: ' '),
+                                                const TextSpan(text: ' '),
+                                                WidgetSpan(
+                                                  alignment:
+                                                      PlaceholderAlignment.top,
+                                                  child: CircleAvatar(
+                                                    radius: (index + 1) > 99
+                                                        ? 14
+                                                        : 11,
+                                                    backgroundColor:
+                                                        textColorChangeList[
+                                                                index]
+                                                            ? Colors.black
+                                                            : Color(
+                                                                0xffff951d31),
+                                                    child: Text(
+                                                      '${index + 1}',
+                                                      style: TextStyle(
+                                                        fontSize: 12,
+                                                        color:
+                                                            textColorChangeList[
+                                                                    index]
+                                                                ? Colors.white
+                                                                : Colors.white,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
                                             ),
                                           ),
-                                    const SizedBox(width: 4),
-                                    InkWell(
-                                      child: const Icon(
-                                        Icons.share,
-                                        color: Colors.white,
-                                        size: 17,
-                                      ),
-                                      onTap: () async {
-                                        //          itemCount: controller.surah.value.data!.ayahs!.length,
-                                        //    itemBuilder: (context, index) {
-                                        final ayah = controller
-                                            .surah.value.data!.ayahs![index];
-                                        //////
-                                        await showMyAyatShareDialog(
-                                          context,
-                                          ayah.text!,
-                                          widget.surahNumber.toString(),
-                                          ayah.numberInSurah!,
-                                        );
-                                      },
-                                    ),
-                                    Expanded(
-                                      child: RichText(
-                                        textDirection: TextDirection.rtl,
-                                        text: TextSpan(
-                                          children: [
-                                            TextSpan(
-                                              text: ayah.text.toString(),
-                                              style: TextStyle(
-                                                fontSize: 19,
-                                                color: textColorChangeList[
-                                                        index]
-                                                    ? Colors.black
-                                                    : null, // Change text color
-                                              ),
-                                            ),
-                                            const TextSpan(text: ' '),
-                                            const TextSpan(text: ' '),
-                                            TextSpan(
-                                              text: '${index + 1}',
-                                              style: TextStyle(
-                                                color: textColorChangeList[
-                                                        index]
-                                                    ? Colors.black
-                                                    : Colors
-                                                        .amber, // Change text color
-                                              ),
-                                            ),
-                                          ],
                                         ),
-                                      ),
+                                      ],
                                     ),
-                                  ],
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                        ),
-                      ],
-                    );
-                  },
-                ),
-              );
-      }),
+                          ],
+                        );
+                      },
+                    ),
+                  );
+          }),
+        ],
+      ),
     );
   }
 }

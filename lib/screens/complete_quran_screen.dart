@@ -1,157 +1,6 @@
-// import 'package:flutter/material.dart';
-// import 'package:flutter/widgets.dart';
-// import 'package:get/get.dart';
-// import 'package:just_audio/just_audio.dart';
-// import 'package:ramazan_app_new_v1/models/complete_quran_model.dart';
-// import 'package:share_plus/share_plus.dart';
-
-// class CompleteQuranScreen extends StatefulWidget {
-//   const CompleteQuranScreen({Key? key}) : super(key: key);
-
-//   @override
-//   State<CompleteQuranScreen> createState() => _CompleteQuranScreenState();
-// }
-
-// class _CompleteQuranScreenState extends State<CompleteQuranScreen> {
-//   final audioPlayer = AudioPlayer();
-//   late QuranCompleteModel quranCompleteModel;
-//   late bool isLoading;
-//   late int selectedSurahIndex;
-//   late int selectedAyatIndex;
-
-//   @override
-//   void initState() {
-//     super.initState();
-//     isLoading = true;
-//     selectedSurahIndex = -1; // Initialize selected index to -1
-//     selectedAyatIndex = -1;
-//     callApiMethods();
-//   }
-
-//   @override
-//   void dispose() {
-//     audioPlayer.dispose();
-//     super.dispose();
-//   }
-
-//   Future<void> callApiMethods() async {
-//     quranCompleteModel = await fetchQuranComplete();
-//     setState(() {
-//       isLoading = false;
-//     });
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: const Text('Complete Quran'),
-//       ),
-//       body: isLoading
-//           ? const Center(
-//               child: CircularProgressIndicator(),
-//             )
-//           : ListView.builder(
-//               shrinkWrap: true,
-//               itemCount: quranCompleteModel.data!.surahs!.length,
-//               itemBuilder: (context, index) {
-//                 return Card(
-//                   //    color: selectedSurahIndex == index
-//                   //      ? Colors.blue
-//                   //    : Colors.white, // Change color conditionally
-
-//                   child: Column(
-//                     crossAxisAlignment: CrossAxisAlignment.start,
-//                     children: [
-//                       Padding(
-//                         padding: const EdgeInsets.all(8.0),
-//                         child: Center(
-//                           child: Text(
-//                             quranCompleteModel.data!.surahs![index].name
-//                                 .toString(),
-//                             style: const TextStyle(
-//                               color: Colors.white,
-//                               fontWeight: FontWeight.bold,
-//                             ),
-//                           ),
-//                         ),
-//                       ),
-//                       ListView.builder(
-//                         shrinkWrap: true,
-//                         physics: const NeverScrollableScrollPhysics(),
-//                         itemCount: quranCompleteModel
-//                             .data!.surahs![index].ayahs!.length,
-//                         itemBuilder: (context, i) {
-//                           return Row(
-//                             children: [
-//                               IconButton(
-//                                 iconSize: 20,
-//                                 color: Colors.white.withOpacity(0.5),
-//                                 onPressed: () async {
-//                                   setState(() {
-//                                     selectedSurahIndex =
-//                                         index; // Update selected index
-//                                     selectedAyatIndex = i;
-//                                   });
-//                                   print(quranCompleteModel
-//                                       .data!.surahs![index].ayahs![i].number);
-//                                   audioPlayer.pause();
-//                                   await audioPlayer.setUrl(
-//                                       'https://cdn.islamic.network/quran/audio/128/ar.alafasy/${quranCompleteModel.data!.surahs![index].ayahs![i].number!}.mp3');
-//                                   await audioPlayer.play();
-//                                 },
-//                                 icon: const Icon(
-//                                   Icons.play_arrow,
-//                                   size: 20,
-//                                 ),
-//                               ),
-//                               InkWell(
-//                                 onTap: () async {
-//                                   await Share.share(quranCompleteModel
-//                                       .data!.surahs![index].ayahs![i].text!);
-//                                 },
-//                                 child: Container(
-//                                   width: Get.width - 70,
-//                                   child: Card(
-//                                     color: selectedSurahIndex == index &&
-//                                             selectedAyatIndex == i
-//                                         ? Colors.amber
-//                                         : Colors
-//                                             .black, // Change color conditionally
-//                                     child: Padding(
-//                                       padding: const EdgeInsets.all(8.0),
-//                                       child: Text(
-//                                         textAlign: TextAlign.right,
-//                                         quranCompleteModel.data!.surahs![index]
-//                                             .ayahs![i].text!,
-//                                         softWrap: true,
-//                                         style: TextStyle(
-//                                           fontWeight: FontWeight.bold,
-//                                           color: (selectedSurahIndex == index &&
-//                                                   selectedAyatIndex == i)
-//                                               ? Colors.black
-//                                               : Colors.amber, // Ch),
-//                                         ),
-//                                       ),
-//                                     ),
-//                                   ),
-//                                 ),
-//                               ),
-//                             ],
-//                           );
-//                         },
-//                       ),
-//                     ],
-//                   ),
-//                 );
-//               },
-//             ),
-//     );
-//   }
-// }
-
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:ramazan_app_new_v1/utils/shareAyatDialog.dart';
 import 'package:share_plus/share_plus.dart';
 
 import 'package:ramazan_app_new_v1/models/complete_quran_model.dart';
@@ -198,33 +47,61 @@ class _CompleteQuranScreenState extends State<CompleteQuranScreen> {
       appBar: AppBar(
         title: const Text('Complete Quran'),
       ),
-      body: isLoading
-          ? const Center(
-              child: CircularProgressIndicator(),
-            )
-          : ListView.builder(
-              itemCount: quranCompleteModel.data!.surahs!.length,
-              // separatorBuilder: (BuildContext context, int index) =>
-              //     const Divider(),
-              itemBuilder: (BuildContext context, int index) {
-                return buildSurahCard(index);
-              },
-            ),
+      body: Stack(
+        children: [
+          // Background image
+          Image.asset(
+            'assets/images/peach_bg_motorolla_new.png', // Replace with your image path
+            fit: BoxFit.cover,
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
+          ),
+          // Content
+          Positioned.fill(
+            child: isLoading
+                ? const Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : ListView.builder(
+                    itemCount: quranCompleteModel.data!.surahs!.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return buildSurahCard(index);
+                    },
+                  ),
+          ),
+        ],
+      ),
     );
   }
 
   Widget buildSurahCard(int index) {
     return Card(
+      margin: EdgeInsets.all(8),
+      color: const Color.fromARGB(146, 255, 223, 204),
+      elevation: 0,
+      // color: cardColor,
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(
+            8,
+          ),
+          side: const BorderSide(
+            width: 2,
+            color: Color(0xffffae2138),
+          )),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(9.0),
             child: Center(
               child: Text(
                 quranCompleteModel.data!.surahs![index].name.toString(),
                 style: const TextStyle(
-                    fontWeight: FontWeight.bold, color: Colors.white),
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16.5,
+                  // color: Colors.white,
+                  color: Color(0xffff951d31),
+                ),
               ),
             ),
           ),
@@ -233,7 +110,8 @@ class _CompleteQuranScreenState extends State<CompleteQuranScreen> {
             physics: const NeverScrollableScrollPhysics(),
             itemCount: quranCompleteModel.data!.surahs![index].ayahs!.length,
             itemBuilder: (context, i) {
-              return buildAyahRow(index, i);
+              return buildAyahRow(
+                  index, i, quranCompleteModel.data!.surahs![index].number!);
             },
           ),
         ],
@@ -241,7 +119,7 @@ class _CompleteQuranScreenState extends State<CompleteQuranScreen> {
     );
   }
 
-  Widget buildAyahRow(int surahIndex, int ayahIndex) {
+  Widget buildAyahRow(int surahIndex, int ayahIndex, int surahNo) {
     return Row(
       children: [
         IconButton(
@@ -258,22 +136,41 @@ class _CompleteQuranScreenState extends State<CompleteQuranScreen> {
             size: 20,
             color: (selectedSurahIndex == surahIndex &&
                     selectedAyatIndex == ayahIndex)
-                ? Colors.amber
-                : Color.fromARGB(45, 158, 158, 158),
+                ? Colors.black
+                : Color(0xffff951d31),
           ),
         ),
         InkWell(
           onTap: () async {
-            await Share.share(quranCompleteModel
-                .data!.surahs![surahIndex].ayahs![ayahIndex].text!);
+            //     await Share.share(quranCompleteModel
+            //       .data!.surahs![surahIndex].ayahs![ayahIndex].text!);
+            await showMyAyatShareDialog(
+                context,
+                quranCompleteModel
+                    .data!.surahs![surahIndex].ayahs![ayahIndex].text!,
+                surahNo.toString(),
+                quranCompleteModel.data!.surahs![surahIndex].ayahs![ayahIndex]
+                    .numberInSurah!);
           },
           child: Container(
             width: MediaQuery.of(context).size.width - 70,
             child: Card(
-              color: (selectedSurahIndex == surahIndex &&
-                      selectedAyatIndex == ayahIndex)
-                  ? Colors.amber
-                  : Color.fromARGB(45, 158, 158, 158),
+              margin: EdgeInsets.all(11),
+              color: const Color.fromARGB(146, 255, 223, 204),
+              elevation: 0,
+              // color: cardColor,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(
+                    8,
+                  ),
+                  side: const BorderSide(
+                    width: 2,
+                    color: Color(0xffffae2138),
+                  )),
+              // color: (selectedSurahIndex == surahIndex &&
+              //         selectedAyatIndex == ayahIndex)
+              //     ? Colors.amber
+              //     : Color.fromARGB(45, 158, 158, 158),
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
@@ -282,11 +179,12 @@ class _CompleteQuranScreenState extends State<CompleteQuranScreen> {
                   textAlign: TextAlign.right,
                   softWrap: true,
                   style: TextStyle(
+                    fontSize: 16,
                     fontWeight: FontWeight.bold,
                     color: (selectedSurahIndex == surahIndex &&
                             selectedAyatIndex == ayahIndex)
                         ? Colors.black
-                        : Colors.amber,
+                        : Color(0xffff951d31),
                   ),
                 ),
               ),

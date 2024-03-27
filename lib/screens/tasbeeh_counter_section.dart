@@ -293,15 +293,10 @@ class _TasbeehCounterSectionState extends State<TasbeehCounterSection> {
                   ),
                   ElevatedButton(
                     style: ButtonStyle(
-
-                      foregroundColor:
-                          MaterialStatePropertyAll(Colors.white),
-
+                      foregroundColor: MaterialStatePropertyAll(Colors.white),
                       backgroundColor:
                           MaterialStatePropertyAll(Color(0xffffae2138)),
                     ),
-
-                    
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
                         _saveData();
