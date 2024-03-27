@@ -833,8 +833,8 @@ class _AllSadjaAyatsScreenState extends State<AllSadjaAyatsScreen> {
   final CommonController controller = Get.put(CommonController());
   late RxBool isLoading;
   double _fontSize = 17.5;
-  String _selectedArabicFont =
-      ArabicFont.elMessiri; // Use constant provided by arabic_font package
+  // String _selectedArabicFont =
+  //    ArabicFont.elMessiri; // Use constant provided by arabic_font package
 
   @override
   void initState() {
@@ -906,18 +906,18 @@ class _AllSadjaAyatsScreenState extends State<AllSadjaAyatsScreen> {
                                   controller.allSadjaAyatsInQuran.value.data!
                                       .ayahs![i].text!,
                                   textAlign: TextAlign.right,
-                                  // style: TextStyle(
-                                  //   color: Colors.white,
-                                  //   fontSize: _fontSize,
-                                  //   fontFamily:
-                                  //       _selectedArabicFont, // Use selected Arabic font
-
-                                  // ),
-                                  style: ArabicTextStyle(
-                                    arabicFont: _selectedArabicFont,
+                                  style: TextStyle(
                                     color: Colors.white,
                                     fontSize: _fontSize,
+                                    //  fontFamily:
+                                    //    _selectedArabicFont, // Use selected Arabic font
                                   ),
+
+                                  //   style: ArabicTextStyle(
+                                  //   arabicFont: _selectedArabicFont,
+                                  //   color: Colors.white,
+                                  // fontSize: _fontSize,
+                                  // ),
                                 ),
                               ),
                               const SizedBox(height: 11),
@@ -974,97 +974,97 @@ class _AllSadjaAyatsScreenState extends State<AllSadjaAyatsScreen> {
           }
         }),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          showModalBottomSheet(
-            context: context,
-            builder: (BuildContext context) {
-              return Container(
-                height: 300,
-                padding: const EdgeInsets.all(20),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text(
-                      'Adjust Font Size',
-                      style: TextStyle(
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Slider(
-                      value: _fontSize,
-                      min: 10.0,
-                      max: 30.0,
-                      onChanged: (value) {
-                        setState(() {
-                          _fontSize = value;
-                        });
-                      },
-                    ),
-                    const SizedBox(height: 20),
-                    const Text(
-                      'Select Arabic Font',
-                      style: TextStyle(
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                    DropdownButton<String>(
-                      value: _selectedArabicFont,
-                      onChanged: (String? newValue) {
-                        setState(() {
-                          _selectedArabicFont = newValue!;
-                        });
-                      },
-                      items: const [
-                        DropdownMenuItem(
-                          value: ArabicFont.elMessiri,
-                          child: Text('El Messiri'),
-                        ),
-                        DropdownMenuItem(
-                          value: ArabicFont.katibeh,
-                          child: Text('Katibeh'),
-                        ),
-                        DropdownMenuItem(
-                          value: ArabicFont.lalezar,
-                          child: Text('Lalezar'),
-                        ),
-                        DropdownMenuItem(
-                          value: ArabicFont.dubai,
-                          child: Text('Dubai'),
-                        ),
-                        DropdownMenuItem(
-                          value: ArabicFont.cairo,
-                          child: Text('Cairo'),
-                        ),
-                        DropdownMenuItem(
-                          value: ArabicFont.lateef,
-                          child: Text('Lateef'),
-                        ),
-                        DropdownMenuItem(
-                          value: ArabicFont.tajawal,
-                          child: Text('Tajawal'),
-                        ),
-                        DropdownMenuItem(
-                          value: ArabicFont.avenirArabic,
-                          child: Text('Avenir Arabic'),
-                        ),
-                        DropdownMenuItem(
-                          value: ArabicFont.iBMPlexSansArabic,
-                          child: Text('iBMPlexSansArabic'),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              );
-            },
-          );
-        },
-        child: const Icon(Icons.settings),
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     showModalBottomSheet(
+      //       context: context,
+      //       builder: (BuildContext context) {
+      //         return Container(
+      //           height: 300,
+      //           padding: const EdgeInsets.all(20),
+      //           child: Column(
+      //             mainAxisAlignment: MainAxisAlignment.center,
+      //             children: [
+      //               const Text(
+      //                 'Adjust Font Size',
+      //                 style: TextStyle(
+      //                   fontSize: 20.0,
+      //                   fontWeight: FontWeight.bold,
+      //                 ),
+      //               ),
+      //               Slider(
+      //                 value: _fontSize,
+      //                 min: 10.0,
+      //                 max: 30.0,
+      //                 onChanged: (value) {
+      //                   setState(() {
+      //                     _fontSize = value;
+      //                   });
+      //                 },
+      //               ),
+      //               const SizedBox(height: 20),
+      //               const Text(
+      //                 'Select Arabic Font',
+      //                 style: TextStyle(
+      //                   fontSize: 20.0,
+      //                   fontWeight: FontWeight.bold,
+      //                 ),
+      //               ),
+      //               const SizedBox(height: 10),
+      //               DropdownButton<String>(
+      //                 value: _selectedArabicFont,
+      //                 onChanged: (String? newValue) {
+      //                   setState(() {
+      //                     _selectedArabicFont = newValue!;
+      //                   });
+      //                 },
+      //                 items: const [
+      //                   DropdownMenuItem(
+      //                     value: ArabicFont.elMessiri,
+      //                     child: Text('El Messiri'),
+      //                   ),
+      //                   DropdownMenuItem(
+      //                     value: ArabicFont.katibeh,
+      //                     child: Text('Katibeh'),
+      //                   ),
+      //                   DropdownMenuItem(
+      //                     value: ArabicFont.lalezar,
+      //                     child: Text('Lalezar'),
+      //                   ),
+      //                   DropdownMenuItem(
+      //                     value: ArabicFont.dubai,
+      //                     child: Text('Dubai'),
+      //                   ),
+      //                   DropdownMenuItem(
+      //                     value: ArabicFont.cairo,
+      //                     child: Text('Cairo'),
+      //                   ),
+      //                   DropdownMenuItem(
+      //                     value: ArabicFont.lateef,
+      //                     child: Text('Lateef'),
+      //                   ),
+      //                   DropdownMenuItem(
+      //                     value: ArabicFont.tajawal,
+      //                     child: Text('Tajawal'),
+      //                   ),
+      //                   DropdownMenuItem(
+      //                     value: ArabicFont.avenirArabic,
+      //                     child: Text('Avenir Arabic'),
+      //                   ),
+      //                   DropdownMenuItem(
+      //                     value: ArabicFont.iBMPlexSansArabic,
+      //                     child: Text('iBMPlexSansArabic'),
+      //                   ),
+      //                 ],
+      //               ),
+      //             ],
+      //           ),
+      //         );
+      //       },
+      //     );
+      //   },
+      //   child: const Icon(Icons.settings),
+      // ),
     );
   }
 }

@@ -55,13 +55,16 @@ class _HadithSectionScreenState extends State<HadithSectionScreen> {
 
   @override
   Widget build(BuildContext context) {
-    const headingStyle = TextStyle(
-      fontWeight: FontWeight.bold,
-      color: Colors.amber,
-    );
     const valueStyle = TextStyle(
-      color: Colors.white,
-      //  fontWeight: FontWeight.bold,
+      color: Color(0xffffae2138),
+      fontWeight: FontWeight.bold,
+      fontSize: 14.5,
+    );
+
+    const subTitleStyle = TextStyle(
+      color: Color(0xffffae2138),
+      fontSize: 13,
+      fontWeight: FontWeight.w600,
     );
 
     return Scaffold(
@@ -69,66 +72,96 @@ class _HadithSectionScreenState extends State<HadithSectionScreen> {
       appBar: AppBar(
         title: const Text('Hadith Section'),
       ),
-      body: Column(
+      body: Stack(
+        fit: StackFit.expand,
         children: [
-          SizedBox(height: 21),
-          Expanded(
-            child: GridView.builder(
-              itemCount: hadithBooks.length,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                mainAxisSpacing: 3.0,
-                crossAxisSpacing: 3.0,
-                childAspectRatio: 2 / 1.5,
-              ),
-              itemBuilder: (BuildContext context, int index) {
-                return InkWell(
-                    onTap: () {
-                      print('going to HadithScreen');
-                      Get.to(HadithScreen(
-                        bookTitle:
-                            hadithBooksDataModel!.books![index].bookName!,
-                        bookSlug: hadithBooksSlugs[index],
-                      ));
-                    },
-                    child:
-                        HadithEditionTileCard(headingStyle, index, valueStyle));
-              },
+          Container(
+            width: Get.width,
+            child: Image.asset(
+              'assets/images/peach_bg_motorolla_new.png',
+              fit: BoxFit.cover,
             ),
+          ),
+          Column(
+            children: [
+              SizedBox(height: 17),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 11.0,
+                    vertical: 4.5,
+                  ),
+                  child: GridView.builder(
+                    itemCount: hadithBooks.length,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      mainAxisSpacing: 6.0,
+                      crossAxisSpacing: 6.0,
+                      childAspectRatio: 2 / 1.5,
+                    ),
+                    itemBuilder: (BuildContext context, int index) {
+                      return InkWell(
+                          onTap: () {
+                            print('going to HadithScreen');
+                            Get.to(HadithScreen(
+                              bookTitle:
+                                  hadithBooksDataModel!.books![index].bookName!,
+                              bookSlug: hadithBooksSlugs[index],
+                            ));
+                          },
+                          child: HadithEditionTileCard(
+                              valueStyle, index, subTitleStyle));
+                    },
+                  ),
+                ),
+              ),
+            ],
           ),
         ],
       ),
     );
   }
 
-  Card HadithEditionTileCard(
+  Widget HadithEditionTileCard(
       TextStyle headingStyle, int i, TextStyle valueStyle) {
-    return Card(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8),
-        // side: BorderSide(
-        //   color: Colors.amber,
-        // ),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(13.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text(
-              hadithBooks[i],
-              softWrap: true,
-              overflow: TextOverflow.ellipsis,
-              style: valueStyle,
+    return Container(
+      width: 165,
+      height: 160,
+      child: Card(
+        margin: EdgeInsets.zero,
+        color: Color.fromARGB(110, 216, 200, 189),
+        elevation: 0,
+        // color: cardColor,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(
+              8,
             ),
-            Text(
-              hadithBooksArabic[i],
-              softWrap: true,
-              overflow: TextOverflow.ellipsis,
-              style: valueStyle,
-            ),
-          ],
+            side: const BorderSide(
+              width: 2,
+              color: Color(0xffffae2138),
+            )),
+
+        child: Padding(
+          padding: const EdgeInsets.all(13.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                hadithBooks[i],
+                softWrap: true,
+                overflow: TextOverflow.ellipsis,
+                style: headingStyle,
+              ),
+              Text(
+                hadithBooksArabic[i],
+                softWrap: true,
+                overflow: TextOverflow.ellipsis,
+                style: valueStyle,
+              ),
+            ],
+          ),
         ),
       ),
     );
