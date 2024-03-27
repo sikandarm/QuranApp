@@ -34,8 +34,10 @@ class _TasbeehCounterSectionState extends State<TasbeehCounterSection> {
   @override
   void initState() {
     super.initState();
+
     _loadCounter();
     _loadSavedEntries();
+    removeDuplicates();
   }
 
   void _loadCounter() async {
@@ -118,7 +120,18 @@ class _TasbeehCounterSectionState extends State<TasbeehCounterSection> {
                                       Colors.white,
                                     ),
                                   ),
-                                  onPressed: () {},
+                                  onPressed: () async {
+                                    // Remove the item from SharedPreferences
+                                    SharedPreferences prefs =
+                                        await SharedPreferences.getInstance();
+                                    englishZikr.removeAt(index);
+                                    arabicZikr.removeAt(index);
+                                    prefs.setStringList(
+                                        'englishZikr', englishZikr);
+                                    prefs.setStringList(
+                                        'arabicZikr', arabicZikr);
+                                    setState(() {});
+                                  },
                                   child: const Text('Delete')),
                             ),
                             children: []),
@@ -214,7 +227,14 @@ class _TasbeehCounterSectionState extends State<TasbeehCounterSection> {
             context: context,
             builder: (BuildContext context) {
               return AlertDialog(
-                title: const Text("Enter Text"),
+                elevation: 0,
+                backgroundColor: Color.fromARGB(255, 216, 200, 189),
+                title: const Text(
+                  "Enter Text",
+                  style: TextStyle(
+                    color: Color(0xffffae2138),
+                  ),
+                ),
                 content: Form(
                   key: _formKey,
                   child: Column(
@@ -222,7 +242,17 @@ class _TasbeehCounterSectionState extends State<TasbeehCounterSection> {
                     children: [
                       TextFormField(
                         controller: _englishController,
-                        decoration: const InputDecoration(hintText: 'English'),
+                        decoration: const InputDecoration(
+                          enabledBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Color(0xffffae2138),
+                            ),
+                          ),
+                          hintText: 'English',
+                          hintStyle: TextStyle(
+                            color: Color(0xffffae2138),
+                          ),
+                        ),
                         validator: (value) {
                           if (value!.isEmpty) {
                             return 'Please enter English text';
@@ -233,7 +263,17 @@ class _TasbeehCounterSectionState extends State<TasbeehCounterSection> {
                       const SizedBox(height: 10),
                       TextFormField(
                         controller: _arabicController,
-                        decoration: const InputDecoration(hintText: 'Arabic'),
+                        decoration: const InputDecoration(
+                          hintText: 'Arabic',
+                          hintStyle: TextStyle(
+                            color: Color(0xffffae2138),
+                          ),
+                          enabledBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Color(0xffffae2138),
+                            ),
+                          ),
+                        ),
                         validator: (value) {
                           if (value!.isEmpty) {
                             return 'Please enter Arabic text';
@@ -252,6 +292,16 @@ class _TasbeehCounterSectionState extends State<TasbeehCounterSection> {
                     child: const Text('Cancel'),
                   ),
                   ElevatedButton(
+                    style: ButtonStyle(
+
+                      foregroundColor:
+                          MaterialStatePropertyAll(Colors.white),
+
+                      backgroundColor:
+                          MaterialStatePropertyAll(Color(0xffffae2138)),
+                    ),
+
+                    
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
                         _saveData();
@@ -271,6 +321,28 @@ class _TasbeehCounterSectionState extends State<TasbeehCounterSection> {
         ),
       ),
     );
+  }
+
+  void removeDuplicates() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    // Remove duplicates from English Zikr list
+    Set<String> englishSet =
+        englishZikr.toSet(); // Convert to set to remove duplicates
+    englishZikr.clear(); // Clear the original list
+    englishZikr.addAll(englishSet.toList()); // Add back non-duplicate items
+
+    // Remove duplicates from Arabic Zikr list
+    Set<String> arabicSet =
+        arabicZikr.toSet(); // Convert to set to remove duplicates
+    arabicZikr.clear(); // Clear the original list
+    arabicZikr.addAll(arabicSet.toList()); // Add back non-duplicate items
+
+    // Save the updated lists to SharedPreferences
+    prefs.setStringList('englishZikr', englishZikr);
+    prefs.setStringList('arabicZikr', arabicZikr);
+
+    setState(() {});
   }
 
   void _saveData() async {
