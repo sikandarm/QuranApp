@@ -223,6 +223,7 @@ class _AudioPlayerDialogState extends State<AudioPlayerDialog> {
           ? Container(
               width: 100,
               height: 100,
+              color: Color.fromARGB(255, 216, 200, 189),
               child: const Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -235,64 +236,100 @@ class _AudioPlayerDialogState extends State<AudioPlayerDialog> {
                 ),
               ),
             )
-          : Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                ListTile(
-                  title: const Text('Audio Player'),
-                  trailing: IconButton(
-                    icon: const Icon(Icons.close),
-                    onPressed: () {
-                      Navigator.of(context).pop();
+          : Container(
+              color: Color.fromARGB(255, 216, 200, 189),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  ListTile(
+                    title: const Text(
+                      'Audio Player',
+                      style: TextStyle(
+                        color: Color(0xffffae2138),
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    trailing: IconButton(
+                      icon: const Icon(
+                        Icons.close,
+                        color: Color(0xffffae2138),
+                      ),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                  ),
+                  StreamBuilder<Duration>(
+                    stream: _audioPlayer.positionStream,
+                    builder: (context, snapshot) {
+                      final position = snapshot.data ?? Duration.zero;
+                      return Column(
+                        children: [
+                          SliderTheme(
+                            data: const SliderThemeData(
+                              thumbColor: Color(0xffffae2138),
+                              activeTrackColor: Color(0xffffae2138),
+                              inactiveTrackColor:
+                                  Color.fromARGB(109, 108, 0, 18),
+                              trackHeight: 1.3,
+                              thumbShape: RoundSliderThumbShape(
+                                  enabledThumbRadius: 7.5),
+                            ),
+                            child: Slider(
+                              value: position.inSeconds.toDouble(),
+                              onChanged: (value) {
+                                _audioPlayer
+                                    .seek(Duration(seconds: value.toInt()));
+                              },
+                              min: 0.0,
+                              max: _audioPlayer.duration!.inSeconds.toDouble(),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 17),
+                            child: TimeStreamWidget(
+                              currentPosition: position,
+                              totalDuration: _audioPlayer.duration!,
+                            ),
+                          ),
+                        ],
+                      );
                     },
                   ),
-                ),
-                StreamBuilder<Duration>(
-                  stream: _audioPlayer.positionStream,
-                  builder: (context, snapshot) {
-                    final position = snapshot.data ?? Duration.zero;
-                    return Column(
-                      children: [
-                        Slider(
-                          value: position.inSeconds.toDouble(),
-                          onChanged: (value) {
-                            _audioPlayer.seek(Duration(seconds: value.toInt()));
-                          },
-                          min: 0.0,
-                          max: _audioPlayer.duration!.inSeconds.toDouble(),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      IconButton(
+                        icon: const Icon(
+                          Icons.play_arrow,
+                          color: Color(0xffffae2138),
                         ),
-                        TimeStreamWidget(
-                          currentPosition: position,
-                          totalDuration: _audioPlayer.duration!,
+                        onPressed: () {
+                          _audioPlayer.play();
+                        },
+                      ),
+                      IconButton(
+                        icon: const Icon(
+                          Icons.pause,
+                          color: Color(0xffffae2138),
                         ),
-                      ],
-                    );
-                  },
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    IconButton(
-                      icon: const Icon(Icons.play_arrow),
-                      onPressed: () {
-                        _audioPlayer.play();
-                      },
-                    ),
-                    IconButton(
-                      icon: const Icon(Icons.pause),
-                      onPressed: () {
-                        _audioPlayer.pause();
-                      },
-                    ),
-                    IconButton(
-                      icon: const Icon(Icons.stop),
-                      onPressed: () {
-                        _audioPlayer.stop();
-                      },
-                    ),
-                  ],
-                ),
-              ],
+                        onPressed: () {
+                          _audioPlayer.pause();
+                        },
+                      ),
+                      IconButton(
+                        icon: const Icon(
+                          Icons.stop,
+                          color: Color(0xffffae2138),
+                        ),
+                        onPressed: () {
+                          _audioPlayer.stop();
+                        },
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
     );
   }
@@ -315,10 +352,12 @@ class TimeStreamWidget extends StatelessWidget {
     String formattedCurrentTime =
         '${currentHours.toString().padLeft(2, '0')}:${currentMinutes.toString().padLeft(2, '0')}:${displayCurrentSeconds.toString().padLeft(2, '0')}';
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+    return Row(
+      //  crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Current Time: $formattedCurrentTime'),
+        //    Text('Current Time: $formattedCurrentTime'),
+        Text('$formattedCurrentTime'),
+        Spacer(),
         DurationWidget(
           totalDuration: totalDuration,
         ),
@@ -342,11 +381,13 @@ class DurationWidget extends StatelessWidget {
     String formattedTime =
         '${displayHours.toString().padLeft(2, '0')}:${displayMinutes.toString().padLeft(2, '0')}:${displaySeconds.toString().padLeft(2, '0')}';
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text('Total Duration: $formattedTime'),
-      ],
-    );
+    return
+        //  Column(
+        //   crossAxisAlignment: CrossAxisAlignment.start,
+        //  children: [
+        // Text('Total Duration: $formattedTime'),
+        Text('$formattedTime');
+    //  ],
+    // );
   }
 }
