@@ -90,6 +90,7 @@ import 'package:flutter/material.dart';
 //////////////////////////////////////
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../models/getAllBookHadiths.dart';
 import '../models/hadithStaticModel.dart';
 
@@ -121,18 +122,22 @@ class _HadithScreenState extends State<HadithScreen> {
   @override
   Widget build(BuildContext context) {
     const valueStyleArabic = TextStyle(
-      color: Colors.amber,
-      fontSize: 18,
+      fontSize: 17.5,
+      color: Color(0xffff951d31),
+      fontWeight: FontWeight.bold,
+
       //  fontWeight: FontWeight.bold,
     );
     const valueStyleUrdu = TextStyle(
-      color: Colors.white,
-      fontSize: 17,
+      color: Colors.black,
+      //   fontWeight: FontWeight.w500,
+      //  fontSize: 17,
       //  fontWeight: FontWeight.bold,
     );
     const valueStyleEnglish = TextStyle(
-      color: Colors.white,
-      fontSize: 17,
+      color: Colors.black,
+      // fontWeight: FontWeight.w500,
+      //  fontSize: 17,
       //  fontWeight: FontWeight.bold,
     );
 
@@ -141,69 +146,95 @@ class _HadithScreenState extends State<HadithScreen> {
       appBar: AppBar(
         title: Text(widget.bookTitle),
       ),
-      body: hadithDataModel != null
-          ? ListView.builder(
-              itemCount: hadithDataModel!.length,
-              itemBuilder: (context, i) {
-                return Column(
-                  children: [
-                    for (var hadith in hadithDataModel![i].hadiths!.data!)
-                      Card(
-                        child: Padding(
-                          padding: const EdgeInsets.all(17.0),
-                          child: Column(
-                            children: [
-                              Text(
-                                hadith.hadithArabic.toString(),
-                                textAlign: TextAlign.right,
-                                style: valueStyleArabic,
-                              ),
-                              const SizedBox(
-                                height: 4,
-                              ),
-                              //   const Divider(
-                              //     color: Colors.white,
-                              //  ),
-                              // const SizedBox(
-                              //   height: 4,
-                              // ),
-                              // Text(
-                              //   hadith.hadithUrdu.toString(),
-                              //   style: valueStyleUrdu,
-                              // ),
-                              // const SizedBox(
-                              //   height: 4,
-                              // ),
-                              const Divider(
-                                color: Colors.white,
-                              ),
-                              const SizedBox(
-                                height: 4,
-                              ),
-                              Text(
-                                hadith.hadithEnglish.toString(),
-                                textAlign: TextAlign.left,
-                                style: valueStyleEnglish,
-                              ),
-                              const SizedBox(
-                                height: 17,
-                              ),
-                              Text(
-                                hadith.book!.bookName.toString(),
-                                style: const TextStyle(color: Colors.amber),
-                                //    style: valueStyle,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                  ],
-                );
-              },
-            )
-          : const Center(
-              child: CircularProgressIndicator(), // or any placeholder widget
+      body: Stack(
+        children: [
+          Container(
+            width: Get.width,
+            height: Get.height,
+            child: Image.asset(
+              'assets/images/peach_bg_motorolla_new.png',
+              fit: BoxFit.cover,
             ),
+          ),
+          hadithDataModel != null
+              ? ListView.builder(
+                  itemCount: hadithDataModel!.length,
+                  itemBuilder: (context, i) {
+                    return Column(
+                      children: [
+                        for (var hadith in hadithDataModel![i].hadiths!.data!)
+                          Card(
+                            margin: EdgeInsets.all(9),
+                            color: const Color.fromARGB(146, 255, 223, 204),
+                            elevation: 0,
+                            // color: cardColor,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(
+                                  8,
+                                ),
+                                side: const BorderSide(
+                                  width: 2,
+                                  color: Color(0xffffae2138),
+                                )),
+                            child: Padding(
+                              padding: const EdgeInsets.all(17.0),
+                              child: Column(
+                                children: [
+                                  Text(
+                                    hadith.hadithArabic.toString(),
+                                    textAlign: TextAlign.right,
+                                    style: valueStyleArabic,
+                                  ),
+                                  const SizedBox(
+                                    height: 4,
+                                  ),
+                                  //   const Divider(
+                                  //     color: Colors.white,
+                                  //  ),
+                                  // const SizedBox(
+                                  //   height: 4,
+                                  // ),
+                                  // Text(
+                                  //   hadith.hadithUrdu.toString(),
+                                  //   style: valueStyleUrdu,
+                                  // ),
+                                  // const SizedBox(
+                                  //   height: 4,
+                                  // ),
+                                  const Divider(
+                                    color: Color(0xffff951d31),
+                                  ),
+                                  const SizedBox(
+                                    height: 4,
+                                  ),
+                                  Text(
+                                    hadith.hadithEnglish.toString(),
+                                    textAlign: TextAlign.left,
+                                    style: valueStyleEnglish,
+                                  ),
+                                  //   const SizedBox(
+                                  //     height: 17,
+                                  //   ),
+                                  // Text(
+                                  //   hadith.book!.bookName.toString(),
+                                  //   style: const TextStyle(
+                                  //     color: Color(0xffff951d31),
+                                  //   ),
+                                  //   //    style: valueStyle,
+                                  // ),
+                                ],
+                              ),
+                            ),
+                          ),
+                      ],
+                    );
+                  },
+                )
+              : const Center(
+                  child: CircularProgressIndicator(),
+                ), // or any placeholder widget,
+        ],
+      ),
     );
   }
 }

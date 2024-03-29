@@ -437,19 +437,19 @@ class _QuranEditionsScreenState extends State<QuranEditionsScreen> {
         title: const Text('Quran Editions'),
       ),
       body: Obx(() {
-        return isLoading.isTrue
-            ? const Center(child: CircularProgressIndicator())
-            : Stack(
-                children: [
-                  Container(
-                    width: Get.width,
-                    height: Get.height,
-                    child: Image.asset(
-                      'assets/images/peach_bg_motorolla_new.png',
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  Column(
+        return Stack(
+          children: [
+            Container(
+              width: Get.width,
+              height: Get.height,
+              child: Image.asset(
+                'assets/images/peach_bg_motorolla_new.png',
+                fit: BoxFit.cover,
+              ),
+            ),
+            isLoading.isTrue
+                ? const Center(child: CircularProgressIndicator())
+                : Column(
                     children: [
                       SizedBox(height: 9),
                       Expanded(
@@ -486,8 +486,8 @@ class _QuranEditionsScreenState extends State<QuranEditionsScreen> {
                       ),
                     ],
                   ),
-                ],
-              );
+          ],
+        );
       }),
     );
   }

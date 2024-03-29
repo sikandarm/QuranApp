@@ -12,46 +12,73 @@ class RamadanDuaScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(title),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          //  crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            for (int i = 0; i < ramadanDua.length; i++) ...{
-              Container(
-                width: Get.width,
-                child: Card(
-                  child: Padding(
-                    padding: const EdgeInsets.all(13.0),
-                    child: Column(
-                      children: [
-                        Text(
-                          ramadanDua[i],
-                          textAlign: TextAlign.right,
-                          style: const TextStyle(
-                            color: Colors.amber,
-                            fontSize: 17.5,
+      body: Stack(
+        children: [
+          Container(
+            width: Get.width,
+            height: Get.height,
+            child: Image.asset(
+              'assets/images/peach_bg_motorolla_new.png',
+              fit: BoxFit.cover,
+            ),
+          ),
+          SingleChildScrollView(
+            child: Column(
+              //  crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                for (int i = 0; i < ramadanDua.length; i++) ...{
+                  Container(
+                    width: Get.width,
+                    child: Card(
+                      margin: EdgeInsets.all(9),
+                      color: const Color.fromARGB(146, 255, 223, 204),
+                      elevation: 0,
+                      // color: cardColor,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(
+                            8,
                           ),
+                          side: const BorderSide(
+                            width: 2,
+                            color: Color(0xffffae2138),
+                          )),
+                      child: Padding(
+                        padding: const EdgeInsets.all(13.0),
+                        child: Column(
+                          children: [
+                            Text(
+                              ramadanDua[i],
+                              textAlign: TextAlign.right,
+                              style: const TextStyle(
+                                fontSize: 17.5,
+                                color: Color(0xffff951d31),
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 4,
+                            ),
+                            const Divider(
+                              color: Color(0xffff951d31),
+                            ),
+                            const SizedBox(
+                              height: 4,
+                            ),
+                            Text(
+                              ramadanDuaEnglish[i],
+                              textAlign: TextAlign.left,
+                              style: const TextStyle(color: Colors.black),
+                            ),
+                          ],
                         ),
-                        const SizedBox(
-                          height: 4,
-                        ),
-                        const Divider(),
-                        const SizedBox(
-                          height: 4,
-                        ),
-                        Text(
-                          ramadanDuaEnglish[i],
-                          textAlign: TextAlign.left,
-                          style: const TextStyle(color: Colors.white),
-                        ),
-                      ],
+                      ),
                     ),
                   ),
-                ),
-              ),
-            }
-          ],
-        ),
+                }
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

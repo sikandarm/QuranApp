@@ -67,202 +67,201 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: isLoading
-          ? const Center(child: CircularProgressIndicator())
-          : Container(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Stack(
+      body: Stack(
+        children: [
+          Container(
+            width: Get.width,
+            height: Get.height,
+            child: Image.asset(
+              'assets/images/peach_bg_motorolla_new.png',
+              fit: BoxFit.cover,
+            ),
+          ),
+          isLoading
+              ? const Center(child: CircularProgressIndicator())
+              : Container(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Image.asset(
-                        'assets/images/prayers_time_top_image_light.png',
-                        width: MediaQuery.of(context).size.width,
-                        height: 270,
-                        fit: BoxFit.cover,
-                      ),
-                      Container(
-                        width: MediaQuery.of(context).size.width,
-                        height: 270,
-                        color: Colors.black.withOpacity(0.5),
-                        child: Padding(
-                          padding: const EdgeInsets.all(21.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              const SizedBox(height: 50),
-                              const Text(
-                                'Quran App',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 21,
-                                ),
-                              ),
-                              const SizedBox(height: 21),
-                              if (cityName != null) ...{
-                                InkWell(
-                                  onTap: () async {
-                                    final mapData =
-                                        await _showMyDialog(context);
-                                    if (mapData != null) {
-                                      callApiMethods(mapData);
-                                    }
+                      Stack(
+                        children: [
+                          Image.asset(
+                            'assets/images/prayers_time_top_image_light.png',
+                            width: MediaQuery.of(context).size.width,
+                            height: 270,
+                            fit: BoxFit.cover,
+                          ),
+                          Container(
+                            width: MediaQuery.of(context).size.width,
+                            height: 270,
+                            color: Colors.black.withOpacity(0.5),
+                            child: Padding(
+                              padding: const EdgeInsets.all(21.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  const SizedBox(height: 50),
+                                  const Text(
+                                    'Quran App',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 21,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 21),
+                                  if (cityName != null) ...{
+                                    InkWell(
+                                      onTap: () async {
+                                        final mapData =
+                                            await _showMyDialog(context);
+                                        if (mapData != null) {
+                                          callApiMethods(mapData);
+                                        }
+                                      },
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          const Icon(
+                                            Icons.location_on_outlined,
+                                            color: Colors.grey,
+                                          ),
+                                          const SizedBox(
+                                            width: 11,
+                                          ),
+                                          Text(
+                                            cityName!,
+                                            style: const TextStyle(
+                                              color: Colors.grey,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 15,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
                                   },
-                                  child: Row(
+                                  const SizedBox(height: 21),
+                                  Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       const Icon(
-                                        Icons.location_on_outlined,
+                                        Icons.calendar_today,
                                         color: Colors.grey,
                                       ),
-                                      const SizedBox(
-                                        width: 11,
+                                      const SizedBox(width: 11),
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            DateFormat('E, MMM d, y').format(
+                                              DateTime.now(),
+                                            ),
+                                            style: const TextStyle(
+                                              color: Colors.grey,
+                                              fontSize: 16,
+                                            ),
+                                          ),
+                                          Container(
+                                            width: 130,
+                                            child: const Divider(
+                                              height: 1,
+                                              color: Colors.grey,
+                                            ),
+                                          ),
+                                          Text(
+                                            HijriCalendar.fromDate(
+                                                    DateTime.now())
+                                                .toFormat('dd MMMM yyyy'),
+                                            style: const TextStyle(
+                                              color: Colors.grey,
+                                              fontSize: 16,
+                                            ),
+                                          )
+                                        ],
                                       ),
-                                      Text(
-                                        cityName!,
-                                        style: const TextStyle(
-                                          color: Colors.grey,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 15,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              },
-                              const SizedBox(height: 21),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  const Icon(
-                                    Icons.calendar_today,
-                                    color: Colors.grey,
-                                  ),
-                                  const SizedBox(width: 11),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        DateFormat('E, MMM d, y').format(
-                                          DateTime.now(),
-                                        ),
-                                        style: const TextStyle(
-                                          color: Colors.grey,
-                                          fontSize: 16,
-                                        ),
-                                      ),
-                                      Container(
-                                        width: 130,
-                                        child: const Divider(
-                                          height: 1,
-                                          color: Colors.grey,
-                                        ),
-                                      ),
-                                      Text(
-                                        HijriCalendar.fromDate(DateTime.now())
-                                            .toFormat('dd MMMM yyyy'),
-                                        style: const TextStyle(
-                                          color: Colors.grey,
-                                          fontSize: 16,
-                                        ),
-                                      )
                                     ],
                                   ),
                                 ],
                               ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 3),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 8.0, top: 21),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Image.asset(
+                                  'assets/icons/prayer_mat_icon.png',
+                                  width: 40,
+                                  height: 40,
+                                  color: Color(0xffffae2138),
+                                ),
+                                const SizedBox(width: 4),
+                                const Text(
+                                  'Today\'s Prayer Times',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 19,
+                                    color: Color(0xffffae2138),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(height: 19),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              PrayerTimeCard(
+                                  'assets/icons/fajar_prayer_icon.png',
+                                  'Fajr',
+                                  prayerTimeApiByCity!),
+                              PrayerTimeCard('assets/icons/sunrise.png',
+                                  'Sunrise', prayerTimeApiByCity!),
                             ],
                           ),
-                        ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              PrayerTimeCard(
+                                  'assets/icons/dhuhar_prayer_icon.png',
+                                  'Dhuhr',
+                                  prayerTimeApiByCity!),
+                              PrayerTimeCard(
+                                  'assets/icons/asar_prayer_icon2.png',
+                                  'Asr',
+                                  prayerTimeApiByCity!),
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              PrayerTimeCard(
+                                  'assets/icons/maghrib_prayer_icon.png',
+                                  'Maghrib',
+                                  prayerTimeApiByCity!),
+                              PrayerTimeCard(
+                                  'assets/icons/isha_prayer_icon.png',
+                                  'Isha',
+                                  prayerTimeApiByCity!),
+                            ],
+                          ),
+                        ],
                       ),
                     ],
                   ),
-                  const SizedBox(height: 3),
-                  Expanded(
-                    //   width: Get.width,
-                    child: Stack(
-                      children: [
-                        Container(
-                          width: Get.width,
-                          child: Image.asset(
-                            'assets/images/peach_bg_motorolla_new.png',
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 8.0, top: 21),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Image.asset(
-                                    'assets/icons/prayer_mat_icon.png',
-                                    width: 40,
-                                    height: 40,
-                                    color: Color(0xffffae2138),
-                                  ),
-                                  const SizedBox(width: 4),
-                                  const Text(
-                                    'Today\'s Prayer Times',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 19,
-                                      color: Color(0xffffae2138),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            const SizedBox(height: 19),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                PrayerTimeCard(
-                                    'assets/icons/fajar_prayer_icon.png',
-                                    'Fajr',
-                                    prayerTimeApiByCity!),
-                                PrayerTimeCard('assets/icons/sunrise.png',
-                                    'Sunrise', prayerTimeApiByCity!),
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                PrayerTimeCard(
-                                    'assets/icons/dhuhar_prayer_icon.png',
-                                    'Dhuhr',
-                                    prayerTimeApiByCity!),
-                                PrayerTimeCard(
-                                    'assets/icons/asar_prayer_icon2.png',
-                                    'Asr',
-                                    prayerTimeApiByCity!),
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                PrayerTimeCard(
-                                    'assets/icons/maghrib_prayer_icon.png',
-                                    'Maghrib',
-                                    prayerTimeApiByCity!),
-                                PrayerTimeCard(
-                                    'assets/icons/isha_prayer_icon.png',
-                                    'Isha',
-                                    prayerTimeApiByCity!),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
+                ),
+        ],
+      ),
     );
   }
 

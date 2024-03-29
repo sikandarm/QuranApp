@@ -171,6 +171,7 @@ class _CompleteQuranScreenState extends State<CompleteQuranScreen> {
               //         selectedAyatIndex == ayahIndex)
               //     ? Colors.amber
               //     : Color.fromARGB(45, 158, 158, 158),
+
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(

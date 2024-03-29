@@ -950,7 +950,10 @@ class _AllSadjaAyatsScreenState extends State<AllSadjaAyatsScreen> {
                                             style: TextStyle(
                                               // color: Colors.white,
                                               color: Color(0xffff951d31),
-                                              fontSize: _fontSize,
+                                              //  fontSize: _fontSize,
+                                              ///////////////////////
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.bold,
                                               //  fontFamily:
                                               //    _selectedArabicFont, // Use selected Arabic font
                                             ),
