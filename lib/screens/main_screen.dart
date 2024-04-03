@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_islamic_icons/flutter_islamic_icons.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 
 import 'package:ramazan_app_new_v1/screens/dua_and_azkar_section.dart';
@@ -17,6 +20,15 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+  @override
+  void initState() {
+    Timer(const Duration(seconds: 1), () {
+      FlutterNativeSplash.remove();
+    });
+
+    super.initState();
+  }
+
   RxInt currentIndex = 2.obs;
 
   List<Widget> screens = [
@@ -164,7 +176,7 @@ class _MainScreenState extends State<MainScreen> {
 
       // ),
 
-      bottomNavigationBar: Container(
+      bottomNavigationBar: SizedBox(
         height: 92,
         //  margin: const EdgeInsets.only(left: 2, right: 2, bottom: 0),
         // decoration: BoxDecoration(
@@ -177,8 +189,8 @@ class _MainScreenState extends State<MainScreen> {
           //  backgroundColor: const Color(0xffff9b5f4d),
           //  selectedItemColor: const Color(0xffd99658),
           backgroundColor: const Color(0xffffdfcc),
-          selectedItemColor: Color(0xffffae2138),
-          unselectedItemColor: Color(0xffffae2138),
+          selectedItemColor: const Color(0xffffae2138),
+          unselectedItemColor: const Color(0xffffae2138),
 
           unselectedFontSize: 0,
 

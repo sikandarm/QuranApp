@@ -4,7 +4,7 @@ project(ramazan_app_new_v1 LANGUAGES CXX)
 
 # The name of the executable created for the application. Change this to change
 # the on-disk name of your application.
-set(BINARY_NAME "Tres 369")
+set(BINARY_NAME "Islam Pro")
 
 # Explicitly opt in to modern CMake behaviors to avoid warnings with recent
 # versions of CMake.

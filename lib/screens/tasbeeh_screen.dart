@@ -108,128 +108,147 @@ class _TasbeehScreenState extends State<TasbeehScreen>
       appBar: AppBar(
         title: Text(widget.englishTasbeeh),
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 13),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Center(
-              child: Container(
-                width: Get.width * 0.5,
-                child: Image.asset(
-                  'assets/images/bismillah_png.png',
-                  scale: 0.5,
-                ),
-              ),
+      body: Stack(
+        children: [
+          Container(
+            width: Get.width,
+            height: Get.height,
+            child: Image.asset(
+              'assets/images/peach_bg_motorolla_new.png',
+              fit: BoxFit.cover,
             ),
-            const Divider(),
-            const Text(
-              'Arabic-',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 17.5,
-                color: Colors.amber,
-              ),
-            ),
-            const SizedBox(height: 3),
-            Text(
-              widget.englishTasbeeh == 'Darood Sharif'
-                  ? "اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ، كَمَا صَلَّيْتَ عَلَى إِبْرَاهِيمَ وَعَلَى آلِ إِبْرَاهِيمَ، إِنَّكَ حَمِيدٌ مَجِيدٌ، اللَّهُمَّ بَارِكْ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ، كَمَا بَارَكْتَ عَلَى إِبْرَاهِيمَ وَعَلَى آلِ إِبْرَاهِيمَ، إِنَّكَ حَمِيدٌ مَجِيدٌ"
-                  : widget.urduTasbeeh,
-              textAlign: TextAlign.right,
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
-                color: Colors.white,
-              ),
-            ),
-            const Divider(),
-            const Text(
-              'English-',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 17.5,
-                color: Colors.amber,
-              ),
-            ),
-            const SizedBox(height: 3),
-            Text(
-              widget.englishTasbeeh,
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
-                color: Colors.white,
-              ),
-            ),
-            SizedBox(
-                height: widget.englishTasbeeh == 'Darood Sharif'
-                    ? 10
-                    : Get.height * 0.15),
-            const Divider(),
-            const SizedBox(height: 21),
-            const Center(
-              child: Text(
-                'Count',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                  color: Colors.amber,
-                ),
-              ),
-            ),
-            Center(
-              child: Text(
-                count.toString(),
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 35,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-            const SizedBox(height: 15),
-            Row(
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 13),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Spacer(),
-                const SizedBox(
-                  width: 50,
+                Center(
+                  child: Container(
+                    width: Get.width * 0.5,
+                    child: Image.asset(
+                      'assets/images/bismillah_png.png',
+                      scale: 0.5,
+                      color: Color(0xffff951d31),
+                    ),
+                  ),
                 ),
-                AnimatedBuilder(
-                  animation: _animation,
-                  builder: (context, child) {
-                    return Center(
-                      child: IconButton(
-                        color: Colors.amber,
-                        icon: const Icon(FlutterIslamicIcons.tasbihHand),
-                        iconSize: 45.0 * _animation.value,
-                        onPressed: _handleTap,
-                      ),
-                    );
-                  },
+                const Divider(
+                  color: Color(0xffff951d31),
                 ),
-                const Spacer(),
-                AnimatedBuilder(
-                  animation: _animation2,
-                  builder: (context, child) {
-                    return Center(
-                      child: IconButton(
-                        color: Colors.amber,
-                        icon: const Icon(Icons.restore_sharp),
-                        iconSize: 45.0 * _animation2.value,
-                        onPressed: () async {
-                          _handleTap2();
-                          clearSharedPreferencesKey(widget.englishTasbeeh);
-                          count = 0;
-                          setState(() {});
-                        },
-                      ),
-                    );
-                  },
+                const Text(
+                  'Arabic-',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 17.5,
+                    color: Color(0xffff951d31),
+                  ),
                 ),
+                const SizedBox(height: 3),
+                Text(
+                  widget.englishTasbeeh == 'Darood Sharif'
+                      ? "اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ، كَمَا صَلَّيْتَ عَلَى إِبْرَاهِيمَ وَعَلَى آلِ إِبْرَاهِيمَ، إِنَّكَ حَمِيدٌ مَجِيدٌ، اللَّهُمَّ بَارِكْ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ، كَمَا بَارَكْتَ عَلَى إِبْرَاهِيمَ وَعَلَى آلِ إِبْرَاهِيمَ، إِنَّكَ حَمِيدٌ مَجِيدٌ"
+                      : widget.urduTasbeeh,
+                  textAlign: TextAlign.right,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                    color: Colors.black,
+                  ),
+                ),
+                const Divider(
+                  color: Color(0xffff951d31),
+                ),
+                const Text(
+                  'English-',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 17.5,
+                    color: Color(0xffff951d31),
+                  ),
+                ),
+                const SizedBox(height: 3),
+                Text(
+                  widget.englishTasbeeh,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                    color: Colors.black,
+                  ),
+                ),
+                SizedBox(
+                    height: widget.englishTasbeeh == 'Darood Sharif'
+                        ? 10
+                        : Get.height * 0.15),
+                const Divider(
+                  color: Color(0xffff951d31),
+                ),
+                const SizedBox(height: 21),
+                const Center(
+                  child: Text(
+                    'Count',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                      color: Color(0xffff951d31),
+                    ),
+                  ),
+                ),
+                Center(
+                  child: Text(
+                    count.toString(),
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 35,
+                      color: Colors.black,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 15),
+                Row(
+                  children: [
+                    const Spacer(),
+                    const SizedBox(
+                      width: 50,
+                    ),
+                    AnimatedBuilder(
+                      animation: _animation,
+                      builder: (context, child) {
+                        return Center(
+                          child: IconButton(
+                            color: Color(0xffff951d31),
+                            icon: const Icon(FlutterIslamicIcons.tasbihHand),
+                            iconSize: 45.0 * _animation.value,
+                            onPressed: _handleTap,
+                          ),
+                        );
+                      },
+                    ),
+                    const Spacer(),
+                    AnimatedBuilder(
+                      animation: _animation2,
+                      builder: (context, child) {
+                        return Center(
+                          child: IconButton(
+                            color: Color(0xffff951d31),
+                            icon: const Icon(Icons.restore_sharp),
+                            iconSize: 45.0 * _animation2.value,
+                            onPressed: () async {
+                              _handleTap2();
+                              clearSharedPreferencesKey(widget.englishTasbeeh);
+                              count = 0;
+                              setState(() {});
+                            },
+                          ),
+                        );
+                      },
+                    ),
+                  ],
+                )
               ],
-            )
-          ],
-        ),
+            ),
+          ),
+        ],
       ),
     );
   }
